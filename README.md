@@ -1,16 +1,23 @@
 # Dache Yassine - Portfolio
 
-My personal portfolio website: services, work experience, projects, certificates and a contact form.
+My personal portfolio: services, work experience, projects, certificates and a contact form.
+Live on Vercel. The content can be edited from a private admin page at `/admin`.
 
-It is a single static file (`index.html`), so it runs on any host with no build step.
+## How it works
 
-## Live site
+- `index.html` is the public site. All the text lives inside it, in the `<script id="site-data">` block.
+- `uploads/` holds the photos and images.
+- `api/` holds the private admin (only reachable with the admin password):
+  - `/admin` shows the login page, then the admin once you're logged in.
+  - Publishing from the admin makes one commit to this repository, and Vercel redeploys the site automatically.
 
-Hosted on Vercel (add your link here once it is deployed).
+## Settings needed on Vercel (Project, Settings, Environment Variables)
 
-## Updating the content
+| Name | Value |
+| --- | --- |
+| `ADMIN_PASSWORD` | A long password only you know |
+| `GITHUB_TOKEN` | A fine-grained GitHub token with Contents: Read and write on this repository only |
+| `GITHUB_REPO` | `your-github-username/yassine-portfolio` |
+| `GITHUB_BRANCH` | Optional, defaults to `main` |
 
-1. Edit the portfolio in the admin page of my Claude version and publish.
-2. Download the new public `index.html`.
-3. Upload it here (Add file, Upload files) to replace the old one.
-4. Vercel redeploys automatically after every commit.
+Never put the password or the token in this repository.
