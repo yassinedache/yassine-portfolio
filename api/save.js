@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
   if (hasDataUrls(content)) return L.sendJSON(res, 400, { error: "Some images weren't uploaded yet. Try publishing again." });
   const files = Array.isArray(body.files) ? body.files : [];
   for (const f of files) {
-    if (!/^\/uploads\/[\w.-]+\.(jpg|png|webp|gif)$/.test(String(f.path)) || !/^[0-9a-f]{40}$/.test(String(f.sha))) {
+    if (!/^\/uploads\/[\w.-]+\.(jpg|png|webp|gif|mp4|webm|mov)$/.test(String(f.path)) || !/^[0-9a-f]{40}$/.test(String(f.sha))) {
       return L.sendJSON(res, 400, { error: "An uploaded image reference was invalid. Try publishing again." });
     }
   }
