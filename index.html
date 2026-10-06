@@ -495,6 +495,7 @@
       '<h2 class="text-4xl md:text-7xl font-black text-ink mb-6 tracking-tighter leading-[0.9]">Have an Awesome Project <br> Idea? <span class="text-brand-orange italic font-light">Let\'s Discuss</span></h2>' +
       '<p class="text-ink/60 font-medium max-w-lg mx-auto mb-12 text-sm md:text-base leading-relaxed">Fill out the form below and let\'s bring your vision to life. I will respond to your inquiry within 24 hours.</p>' +
       '<form id="contactForm" novalidate class="bg-surface rounded-[2.5rem] p-6 sm:p-8 md:p-12 shadow-2xl border border-line max-w-3xl mx-auto text-left mb-16 relative overflow-hidden">' +
+        '<div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label for="company">Company</label><input id="company" name="company" tabindex="-1" autocomplete="off"></div>' +
         '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">' +
           field("fullName", "Full Name", true, '<input id="fullName" name="fullName" autocomplete="name" class="' + FORM_INPUT + '" placeholder="Your full name">') +
           field("email", "Email Address", true, '<input id="email" name="email" type="email" autocomplete="email" class="' + FORM_INPUT + '" placeholder="you@example.com">') +
@@ -639,6 +640,7 @@
 
   function wireForm() {
     var form = $("#contactForm"); if (!form) return;
+    var shownAt = Date.now();
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var f = Object.fromEntries(new FormData(form));
@@ -648,31 +650,49 @@
       if (!String(f.email || "").trim()) return notify("error", "Email Address is required");
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(f.email).trim())) return notify("error", "Please enter a valid email address");
       if (!String(f.phone || "").trim()) return notify("error", "Phone Number is required");
-      if (!phoneOk) return notify("error", "Please enter a valid phone number (e.g. +1 234 567 890)");
+      if (!phoneOk) return notify("error", "Please enter a valid phone number (e.g. +213 5XX XX XX XX)");
       if (!f.service) return notify("error", "Please select a service");
       if (!String(f.description || "").trim()) return notify("error", "Project description is required");
       var btn = $("#sendBtn");
       btn.disabled = true;
       btn.innerHTML = ic("loader", "w-6 h-6 animate-spin") + "<span>Submitting...</span>";
-      var body = ["Name: " + f.fullName, "Email: " + f.email, "Phone: " + f.phone, "Service: " + f.service, "Budget: " + (f.budget || "-"), "Deadline: " + (f.deadline || "-"), "", f.description].join("\n");
-      var mails = emailLinks("New project inquiry from " + f.fullName, body);
-      lastMessage = "To: " + mails.to + "\nSubject: New project inquiry from " + f.fullName + "\n\n" + body;
-      setTimeout(function () {
-        btn.disabled = false;
-        btn.innerHTML = "<span>Send Message</span>" + ic("arrow-up-right", "w-6 h-6");
-        status.className = "p-4 rounded-[1.2rem] mb-6 font-semibold text-sm bg-emerald-50 text-emerald-800 border border-emerald-100";
-        var BTN = "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-emerald-900 border border-emerald-200 font-black text-xs hover:bg-emerald-100 transition-colors";
-        status.innerHTML = '<p class="mb-3">Thanks! Your message is ready. Send it with one click and I\'ll reply within 24 hours:</p>' +
-          '<div class="flex flex-wrap gap-2">' +
-            '<a class="' + BTN + '" target="_blank" rel="noreferrer" href="' + esc(mails.gmail) + '">' + ic("mail", "w-4 h-4") + "Send with Gmail</a>" +
-            '<a class="' + BTN + '" target="_blank" rel="noreferrer" href="' + esc(mails.outlook) + '">' + ic("mail", "w-4 h-4") + "Send with Outlook</a>" +
-            '<button type="button" data-copy-message class="' + BTN + '">' + ic("check", "w-4 h-4") + "Copy message</button>" +
-          "</div>";
-        status.hidden = false;
-        notify("success", "Message ready to send");
-        form.reset();
-      }, 900);
+      var done = function () { btn.disabled = false; btn.innerHTML = "<span>Send Message</span>" + ic("arrow-up-right", "w-6 h-6"); };
+      var payload = { fullName: f.fullName, email: f.email, phone: f.phone, service: f.service, budget: f.budget || "", deadline: f.deadline || "", description: f.description, company: f.company || "", elapsed: Date.now() - shownAt };
+      fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, status: r.status, d: d }; }); })
+        .then(function (res) {
+          done();
+          if (res.ok) {
+            status.className = "p-4 rounded-[1.2rem] mb-6 font-semibold text-sm bg-emerald-50 text-emerald-800 border border-emerald-100";
+            status.textContent = "Thanks " + String(f.fullName).trim().split(" ")[0] + "! Your message has been sent. I'll reply within 24 hours.";
+            status.hidden = false;
+            notify("success", "Message sent");
+            form.reset();
+            shownAt = Date.now();
+          } else if (res.status === 400 || res.status === 429) {
+            notify("error", (res.d && res.d.error) || "Please check the form and try again.");
+          } else {
+            showEmailFallback(f, status);
+          }
+        })
+        .catch(function () { done(); showEmailFallback(f, status); });
     });
+  }
+
+  /* if the form can't send by itself (offline, or not set up yet), offer the visitor ready-made emails instead */
+  function showEmailFallback(f, status) {
+    var body = ["Name: " + f.fullName, "Email: " + f.email, "Phone: " + f.phone, "Service: " + f.service, "Budget: " + (f.budget || "-"), "Deadline: " + (f.deadline || "-"), "", f.description].join("\n");
+    var mails = emailLinks("New project inquiry from " + f.fullName, body);
+    lastMessage = "To: " + mails.to + "\nSubject: New project inquiry from " + f.fullName + "\n\n" + body;
+    status.className = "p-4 rounded-[1.2rem] mb-6 font-semibold text-sm bg-emerald-50 text-emerald-800 border border-emerald-100";
+    var BTN = "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-emerald-900 border border-emerald-200 font-black text-xs hover:bg-emerald-100 transition-colors";
+    status.innerHTML = '<p class="mb-3">Your message is ready. Send it with one click and I\'ll reply within 24 hours:</p>' +
+      '<div class="flex flex-wrap gap-2">' +
+        '<a class="' + BTN + '" target="_blank" rel="noreferrer" href="' + esc(mails.gmail) + '">' + ic("mail", "w-4 h-4") + "Send with Gmail</a>" +
+        '<a class="' + BTN + '" target="_blank" rel="noreferrer" href="' + esc(mails.outlook) + '">' + ic("mail", "w-4 h-4") + "Send with Outlook</a>" +
+        '<button type="button" data-copy-message class="' + BTN + '">' + ic("check", "w-4 h-4") + "Copy message</button>" +
+      "</div>";
+    status.hidden = false;
   }
 
   function openLightbox(i) {
