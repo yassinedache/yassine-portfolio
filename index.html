@@ -129,11 +129,27 @@
 
   /* 4 services: 2 x 2 on tablets, 4 in a row on large screens */
   @media (min-width: 1280px) { .svc-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+  /* language switch */
+  .nowrap-w { white-space: nowrap; }
+  .lang-sw { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: 9999px; background: rgba(255, 255, 255, .07); }
+  .lang-sw button { min-width: 36px; height: 30px; padding: 0 10px; border-radius: 9999px; font-size: 11px; font-weight: 900; letter-spacing: .12em; color: rgba(255, 255, 255, .6); transition: background-color .2s, color .2s; }
+  .lang-sw button:hover { color: #fff; }
+  .lang-sw button[aria-pressed="true"] { background: hsl(var(--brand-purple)); color: #171717; }
+  .lang-sw button:focus-visible { outline: 2px solid hsl(var(--brand-purple)); outline-offset: 2px; }
+  .lang-sat { position: absolute; left: 100%; top: 0; height: 100%; display: none; align-items: center; padding-top: calc(env(safe-area-inset-top, 0px) + 1.5rem); }
+  .lang-sw-pill { padding: 6px; background: hsl(var(--brand-dark) / .9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, .1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25); }
+  .lang-sw-pill button { height: 38px; min-width: 42px; }
+  .lang-rail { display: none !important; }
+  span.lang-rail { width: 20px; height: 1px; margin: 4px 0; background: rgba(255, 255, 255, .12); }
+  .lang-rail-btn { font-size: 11px; font-weight: 900; letter-spacing: .1em; }
+  @media (min-width: 768px) and (max-width: 1023.98px) { .lang-rail { display: flex !important; } span.lang-rail { display: block !important; } }
+  @media (min-width: 1024px) { .lang-sat { display: flex; } }
 </style>
 </head>
 <body>
 <div id="root"></div>
-<script id="site-data" type="application/json">{"profile":{"firstName":"Yassine","fullName":"Dache Yassine","role":"Full-Stack Developer","specialty":"UI/UX Designer","photo":"/uploads/photo-c69c1b4f.webp","testimonial":"\"Yassine's clean and creative development work brought our vision to life. Truly impressive and highly recommended.\"","years":"3 Years","servicesIntro":"I analyze data and build mathematical models, design clear and intuitive interfaces, develop full-stack applications, and create the videos, posts and stories that grow your community on social media.","projectsIntro":"A few things I've built. Each one shows what it is, my role and the result.","certificatesIntro":"Courses and certifications I've completed. Tap a certificate to see it full size.","bio":"Computer Science graduate from USTHB, passionate about mathematics, data and software. I analyze data, build models and develop clean, well-designed applications, and I'm always looking for projects that combine math with real-world impact.","email":"dache.yassine@gmail.com","phone":"+213 540309216","location":"Your city, Country","links":{"github":"https://github.com/yassinedache","linkedin":"https://www.linkedin.com/in/yassine-dache/","instagram":"https://www.instagram.com/"},"highlights":["4.5/5 Average Ratings","15+ Projects Delivered","Replies Within 24 Hours"],"website":""},"services":[{"id":"s1","title":"Applied Mathematics & Optimization","description":"Turning data into insight with statistics, mathematical modeling and machine learning, from cleaning data and testing models to optimizing them with algorithms like genetic algorithms.","image":"","art":"growth"},{"id":"s3","title":"Full-Stack Development","description":"End-to-end development of complex web applications.","image":"","art":"code"},{"id":"s2","title":"UI/UX Design","description":"User-centric designs that are both beautiful and functional.","image":"","art":"design"},{"id":"s4","title":"Community Management","description":"I manage your social media from start to finish: editing short videos and reels, designing posts and stories, and publishing them on a consistent schedule on Instagram, TikTok and Facebook to grow and engage your community.","image":"","art":"social"}],"projects":[{"id":"imuvsdh5bwg0vv","image":"/uploads/project-muvsln8c34qz.jpg","title":"YaliDrive","category":"Mobile App","serviceId":"s2","description":"Delivery app solving the last-mile problem, with route optimization and real-time tracking for efficient package delivery.","tags":"React Native, Expo, Express js, Figma, Canva, UI Design, UX Research","link":"https://www.figma.com/design/tfWeMQWR41iqs8AcFnwToP/yalidine?node-id=0-1&t=HWnZJu0cCmLaELjC-1","github":"","videoLink":""},{"id":"imutwun8ohqlc4","image":"/uploads/project-7a302d3d.jpg","title":"BugPredictor","category":"Machine Learning","description":"Full end-to-end platform that predicts software defects using machine learning, enhanced with genetic algorithm optimization. Complete Python backend with an interactive frontend.","tags":"Python, Machine Learning, Genetic Algorithm, Flask","link":"https://github.com/yassinedache/bugpredictor","serviceId":"s1","github":"https://github.com/yassinedache/bugpredictor","videoLink":""},{"id":"imuvs9kljk0qnz","image":"/uploads/project-muvslo13kovj.jpg","title":"Smart House","category":"UI/UX Design","serviceId":"s2","description":"Modern UI/UX design for a smart home control app, with intuitive controls, an elegant interface and a seamless experience for managing home automation.","tags":"Figma, UI Design, UX Research, Prototyping","link":"https://www.figma.com/design/uA8RZfgtoHnKFH3CcvBMWk/Smart-House?node-id=0-1&t=pRNb6z2f2gA1BM29-1","github":"","videoLink":""},{"id":"imuvsbnup5ka9c","image":"/uploads/project-muvslonvyj8d.jpg","title":"Progres","category":"UI/UX Design","serviceId":"s2","description":"UI/UX design project showcasing creative design solutions, modern layouts and attention to detail for digital products.","tags":"Figma, UI Design, Visual Design, Branding","link":"https://www.figma.com/design/4H8ZwuXtvbB2yFFSYeHz72/dzigners?node-id=0-1&t=Lt7j8Fo257eaebpL-1","github":"","videoLink":""},{"id":"imuvs0d7pa20se","image":"/uploads/project-muvslpd3ojk4.jpg","title":"HR Management System","category":"Web App","serviceId":"s3","description":"Complete web-based Human Resources Management System that centralizes, automates and secures essential HR processes such as employee management.","tags":"Python, Flask, Django, SQL, HTML, CSS, React, JavaScript","link":"https://github.com/yassinedache/Elon-Musk-biographie","github":"https://github.com/yassinedache/Elon-Musk-biographie","videoLink":""},{"id":"imuvrw4co4q8o4","image":"/uploads/project-muvslpxc72e0.jpg","title":"Elon Musk Biography","category":"Website","serviceId":"s3","description":"Multi-page, fully responsive website presenting the life, businesses, innovations and influence of Elon Musk, with a modern design.","tags":"HTML5, CSS3, JavaScript, Responsive","link":"https://github.com/yassinedache/Elon-Musk-biographie","github":"https://github.com/yassinedache/Elon-Musk-biographie","videoLink":""}],"experience":[{"id":"e1","company":"Freelance Full-Stack Developer","date":"2025 - Present","role":"Web and app Solutions Developer","text":"Design and develop modern web applications and cloud-based platforms using React, TypeScript, Node.js, PostgreSQL, and MongoDB. Deliver scalable, responsive, and user-friendly solutions tailored to clients' needs.","dot":"dark"},{"id":"e4","company":"USTHB, Final Year Project","date":"2025","role":"Machine Learning Developer","text":"Built machine learning models to detect software defects: data preparation, model training and comparison of results. This became my BugPredictor project.","dot":"dark"},{"id":"e2","company":"Hackathons & Innovation Programs","date":"2024 - Present","role":"Developer & UI/UX Designer","text":"Participated in multiple hackathons and entrepreneurship programs, designing modern digital experiences and solving real-world challenges. Created user-centered interfaces in Figma, developed case studies, and collaborated with multidisciplinary teams.","dot":""},{"id":"e3","company":"Open Minds Club","date":"2024 - 2026","role":"IT Member","text":"Managed the club's digital tools and online presence, building and maintaining web pages and supporting members with technical needs for events and projects.","dot":"dark"},{"id":"imuvtlc38oqz4t","company":"USTHB","role":"Computer Science Student","date":"2022 - Present","text":"Studying computer science with a focus on software engineering and AI.","dot":"dark"}],"certificates":[{"id":"imuu6er1v8wci3","image":"/uploads/certificate-muu6itum3v6g.jpg","title":"Experia Participation Certificate","issuer":"OpenMindsClub","date":"2025","link":""},{"id":"imuu655yyjqq18","image":"/uploads/certificate-muu6iuo91ov0.jpg","title":"Learning Data Analytics","issuer":"LinkedIn Learning","date":"2025","link":""},{"id":"imuu673h17wgf3","image":"/uploads/certificate-muu6iveq6svo.jpg","title":"Developing Your Emotional Intelligence","issuer":"LinkedIn Learning","date":"2025","link":""},{"id":"imuu67wk1tyak6","image":"/uploads/certificate-muu6iw0bcexj.jpg","title":"EF SET English Certificate","issuer":"EF Standard English Test","date":"2025","link":""},{"id":"imuu6arzf3qxyc","image":"/uploads/certificate-muu6iwm0cxox.jpg","title":"TCF - Test of French Knowledge","issuer":"France Education International","date":"2025","link":""}]}</script>
+<script id="site-data" type="application/json">{"profile":{"firstName":"Yassine","fullName":"Dache Yassine","role":"Full-Stack Developer","specialty":"UI/UX Designer","photo":"/uploads/photo-c69c1b4f.webp","testimonial":"\"Yassine's clean and creative development work brought our vision to life. Truly impressive and highly recommended.\"","years":"3 Years","servicesIntro":"I analyze data and build mathematical models, design clear and intuitive interfaces, develop full-stack applications, and create the videos, posts and stories that grow your community on social media.","projectsIntro":"A few things I've built. Each one shows what it is, my role and the result.","certificatesIntro":"Courses and certifications I've completed. Tap a certificate to see it full size.","bio":"Computer Science graduate from USTHB, passionate about mathematics, data and software. I analyze data, build models and develop clean, well-designed applications, and I'm always looking for projects that combine math with real-world impact.","email":"dache.yassine@gmail.com","phone":"+213 540309216","location":"Your city, Country","links":{"github":"https://github.com/yassinedache","linkedin":"https://www.linkedin.com/in/yassine-dache/","instagram":"https://www.instagram.com/"},"highlights":["4.5/5 Average Ratings","15+ Projects Delivered","Replies Within 24 Hours"],"website":"","roleFr":"Développeur Full-Stack","specialtyFr":"Designer UI/UX","yearsFr":"3 ans","testimonialFr":"« Le travail de développement propre et créatif de Yassine a donné vie à notre vision. Vraiment impressionnant, je le recommande vivement. »","servicesIntroFr":"J'analyse des données et construis des modèles mathématiques, je conçois des interfaces claires et intuitives, je développe des applications full-stack, et je crée les vidéos, posts et stories qui font grandir votre communauté sur les réseaux sociaux.","projectsIntroFr":"Quelques projets que j'ai réalisés. Chacun montre ce qu'il est, mon rôle et le résultat.","certificatesIntroFr":"Les formations et certifications que j'ai obtenues. Cliquez sur un certificat pour le voir en grand.","bioFr":"Diplômé en informatique de l'USTHB, passionné de mathématiques, de données et de logiciels. J'analyse des données, construis des modèles et développe des applications propres et soignées, et je cherche toujours des projets qui allient les mathématiques à un impact concret.","highlightsFr":["Note moyenne de 4,5/5","15+ projets livrés","Réponse sous 24 heures"]},"services":[{"id":"s1","title":"Applied Mathematics & Optimization","description":"Turning data into insight with statistics, mathematical modeling and machine learning, from cleaning data and testing models to optimizing them with algorithms like genetic algorithms.","image":"","art":"growth","titleFr":"Mathématiques appliquées & optimisation","descriptionFr":"Transformer les données en informations utiles grâce aux statistiques, à la modélisation mathématique et au machine learning : du nettoyage des données et du test des modèles jusqu'à leur optimisation avec des algorithmes comme les algorithmes génétiques."},{"id":"s3","title":"Full-Stack Development","description":"End-to-end development of complex web applications.","image":"","art":"code","titleFr":"Développement Full-Stack","descriptionFr":"Développement de bout en bout d'applications web complexes."},{"id":"s2","title":"UI/UX Design","description":"User-centric designs that are both beautiful and functional.","image":"","art":"design","titleFr":"Design UI/UX","descriptionFr":"Des interfaces centrées sur l'utilisateur, à la fois belles et fonctionnelles."},{"id":"s4","title":"Community Management","description":"I manage your social media from start to finish: editing short videos and reels, designing posts and stories, and publishing them on a consistent schedule on Instagram, TikTok and Facebook to grow and engage your community.","image":"","art":"social","titleFr":"Community Management","descriptionFr":"Je gère vos réseaux sociaux de A à Z : montage de vidéos courtes et de reels, création de posts et de stories, et publication régulière sur Instagram, TikTok et Facebook pour faire grandir et engager votre communauté."}],"projects":[{"id":"imuvsdh5bwg0vv","image":"/uploads/project-muvsln8c34qz.jpg","title":"YaliDrive","category":"Mobile App","serviceId":"s2","description":"Delivery app solving the last-mile problem, with route optimization and real-time tracking for efficient package delivery.","tags":"React Native, Expo, Express js, Figma, Canva, UI Design, UX Research","link":"https://www.figma.com/design/tfWeMQWR41iqs8AcFnwToP/yalidine?node-id=0-1&t=HWnZJu0cCmLaELjC-1","github":"","videoLink":"","categoryFr":"Application mobile","descriptionFr":"Application de livraison qui résout le problème du dernier kilomètre, avec optimisation des itinéraires et suivi en temps réel pour livrer les colis efficacement."},{"id":"imutwun8ohqlc4","image":"/uploads/project-7a302d3d.jpg","title":"BugPredictor","category":"Machine Learning","description":"Full end-to-end platform that predicts software defects using machine learning, enhanced with genetic algorithm optimization. Complete Python backend with an interactive frontend.","tags":"Python, Machine Learning, Genetic Algorithm, Flask","link":"https://github.com/yassinedache/bugpredictor","serviceId":"s1","github":"https://github.com/yassinedache/bugpredictor","videoLink":"","categoryFr":"Machine Learning","descriptionFr":"Plateforme complète qui prédit les défauts logiciels grâce au machine learning, optimisée par un algorithme génétique. Backend Python complet avec une interface interactive."},{"id":"imuvs9kljk0qnz","image":"/uploads/project-muvslo13kovj.jpg","title":"Smart House","category":"UI/UX Design","serviceId":"s2","description":"Modern UI/UX design for a smart home control app, with intuitive controls, an elegant interface and a seamless experience for managing home automation.","tags":"Figma, UI Design, UX Research, Prototyping","link":"https://www.figma.com/design/uA8RZfgtoHnKFH3CcvBMWk/Smart-House?node-id=0-1&t=pRNb6z2f2gA1BM29-1","github":"","videoLink":"","categoryFr":"Design UI/UX","descriptionFr":"Design UI/UX moderne pour une application de maison connectée, avec des commandes intuitives, une interface élégante et une expérience fluide pour gérer la domotique."},{"id":"imuvsbnup5ka9c","image":"/uploads/project-muvslonvyj8d.jpg","title":"Progres","category":"UI/UX Design","serviceId":"s2","description":"UI/UX design project showcasing creative design solutions, modern layouts and attention to detail for digital products.","tags":"Figma, UI Design, Visual Design, Branding","link":"https://www.figma.com/design/4H8ZwuXtvbB2yFFSYeHz72/dzigners?node-id=0-1&t=Lt7j8Fo257eaebpL-1","github":"","videoLink":"","categoryFr":"Design UI/UX","descriptionFr":"Projet de design UI/UX qui présente des solutions créatives, des mises en page modernes et un grand souci du détail pour des produits numériques."},{"id":"imuvs0d7pa20se","image":"/uploads/project-muvslpd3ojk4.jpg","title":"HR Management System","category":"Web App","serviceId":"s3","description":"Complete web-based Human Resources Management System that centralizes, automates and secures essential HR processes such as employee management.","tags":"Python, Flask, Django, SQL, HTML, CSS, React, JavaScript","link":"https://github.com/yassinedache/Elon-Musk-biographie","github":"https://github.com/yassinedache/Elon-Musk-biographie","videoLink":"","titleFr":"Système de gestion RH","categoryFr":"Application web","descriptionFr":"Système complet de gestion des ressources humaines en ligne, qui centralise, automatise et sécurise les processus RH essentiels comme la gestion des employés."},{"id":"imuvrw4co4q8o4","image":"/uploads/project-muvslpxc72e0.jpg","title":"Elon Musk Biography","category":"Website","serviceId":"s3","description":"Multi-page, fully responsive website presenting the life, businesses, innovations and influence of Elon Musk, with a modern design.","tags":"HTML5, CSS3, JavaScript, Responsive","link":"https://github.com/yassinedache/Elon-Musk-biographie","github":"https://github.com/yassinedache/Elon-Musk-biographie","videoLink":"","titleFr":"Biographie d'Elon Musk","categoryFr":"Site web","descriptionFr":"Site web multipage entièrement responsive qui présente la vie, les entreprises, les innovations et l'influence d'Elon Musk, avec un design moderne."}],"experience":[{"id":"e1","company":"Freelance Full-Stack Developer","date":"2025 - Present","role":"Web and app Solutions Developer","text":"Design and develop modern web applications and cloud-based platforms using React, TypeScript, Node.js, PostgreSQL, and MongoDB. Deliver scalable, responsive, and user-friendly solutions tailored to clients' needs.","dot":"dark","companyFr":"Développeur Full-Stack freelance","dateFr":"2025 - Aujourd'hui","roleFr":"Développeur de solutions web et mobiles","textFr":"Je conçois et développe des applications web modernes et des plateformes cloud avec React, TypeScript, Node.js, PostgreSQL et MongoDB. Je livre des solutions évolutives, responsives et faciles à utiliser, adaptées aux besoins de chaque client."},{"id":"e4","company":"USTHB, Final Year Project","date":"2025","role":"Machine Learning Developer","text":"Built machine learning models to detect software defects: data preparation, model training and comparison of results. This became my BugPredictor project.","dot":"dark","companyFr":"USTHB, projet de fin d'études","roleFr":"Développeur Machine Learning","textFr":"Développement de modèles de machine learning pour détecter les défauts logiciels : préparation des données, entraînement des modèles et comparaison des résultats. Ce travail est devenu mon projet BugPredictor."},{"id":"e2","company":"Hackathons & Innovation Programs","date":"2024 - Present","role":"Developer & UI/UX Designer","text":"Participated in multiple hackathons and entrepreneurship programs, designing modern digital experiences and solving real-world challenges. Created user-centered interfaces in Figma, developed case studies, and collaborated with multidisciplinary teams.","dot":"","companyFr":"Hackathons et programmes d'innovation","dateFr":"2024 - Aujourd'hui","roleFr":"Développeur et designer UI/UX","textFr":"Participation à plusieurs hackathons et programmes d'entrepreneuriat : conception d'expériences numériques modernes et résolution de problèmes concrets. Création d'interfaces centrées sur l'utilisateur dans Figma, rédaction d'études de cas et travail avec des équipes pluridisciplinaires."},{"id":"e3","company":"Open Minds Club","date":"2024 - 2026","role":"IT Member","text":"Managed the club's digital tools and online presence, building and maintaining web pages and supporting members with technical needs for events and projects.","dot":"dark","roleFr":"Membre IT","textFr":"Gestion des outils numériques et de la présence en ligne du club, création et maintenance de pages web, et aide technique aux membres pour les événements et les projets."},{"id":"imuvtlc38oqz4t","company":"USTHB","role":"Computer Science Student","date":"2022 - Present","text":"Studying computer science with a focus on software engineering and AI.","dot":"dark","roleFr":"Étudiant en informatique","dateFr":"2022 - Aujourd'hui","textFr":"Études en informatique, avec un accent sur le génie logiciel et l'intelligence artificielle."}],"certificates":[{"id":"imuu6er1v8wci3","image":"/uploads/certificate-muu6itum3v6g.jpg","title":"Experia Participation Certificate","issuer":"OpenMindsClub","date":"2025","link":"","titleFr":"Certificat de participation Experia"},{"id":"imuu655yyjqq18","image":"/uploads/certificate-muu6iuo91ov0.jpg","title":"Learning Data Analytics","issuer":"LinkedIn Learning","date":"2025","link":""},{"id":"imuu673h17wgf3","image":"/uploads/certificate-muu6iveq6svo.jpg","title":"Developing Your Emotional Intelligence","issuer":"LinkedIn Learning","date":"2025","link":""},{"id":"imuu67wk1tyak6","image":"/uploads/certificate-muu6iw0bcexj.jpg","title":"EF SET English Certificate","issuer":"EF Standard English Test","date":"2025","link":"","titleFr":"Certificat d'anglais EF SET"},{"id":"imuu6arzf3qxyc","image":"/uploads/certificate-muu6iwm0cxox.jpg","title":"TCF - Test of French Knowledge","issuer":"France Education International","date":"2025","link":"","titleFr":"TCF - Test de connaissance du français"}]}</script>
 <script>
 (function () {
   "use strict";
@@ -161,6 +177,97 @@
   var safeJSON = function (o) { return JSON.stringify(o).replace(/</g, "\\u003c").replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029"); };
   var BOOT = Date.now();
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- language (EN / FR) ---------- */
+  var LANG_KEY = "portfolio-lang";
+  var LANG = (function () {
+    var q = /[?&]lang=(en|fr)\b/i.exec(location.search || "");
+    if (q) return q[1].toLowerCase();
+    try { var saved = localStorage.getItem(LANG_KEY); if (saved === "en" || saved === "fr") return saved; } catch (e) {}
+    var nav = (navigator.languages && navigator.languages[0]) || navigator.language || "";
+    return /^fr\b/i.test(nav) ? "fr" : "en";
+  })();
+  var I18N_FR = {
+    "Main": "Principal", "Home": "Accueil", "About": "À propos", "Service": "Services", "Project": "Projets", "Certificates": "Certificats", "Contact": "Contact",
+    "About Us": "À propos", "Work Experience": "Expérience", "Projects": "Projets", "Navigation": "Navigation",
+    "Email": "E-mail", "Email me": "Écrivez-moi", "Write in Gmail": "Écrire avec Gmail", "Write in Outlook": "Écrire avec Outlook", "Copy address": "Copier l'adresse",
+    "Email address copied: {to}": "Adresse e-mail copiée : {to}",
+    "Contact and social links": "Contact et réseaux sociaux", "Language": "Langue",
+    "Back to top": "Retour en haut", "Open navigation menu": "Ouvrir le menu", "Navigation menu": "Menu de navigation", "Close navigation menu": "Fermer le menu",
+    "Let's Connect": "Restons en contact",
+    "Hello!": "Bonjour !", "I'm ": "Je suis ", "a ": "", "Experience": "d'expérience",
+    "My": "Mes", "Services": "Services", "My Work Experience": "Mon Expérience",
+    "See {name} projects": "Voir les projets {name}",
+    "All projects": "Tous les projets", "Filter projects by service": "Filtrer les projets par service",
+    "No project in this service yet.": "Aucun projet dans ce service pour le moment.", "Open {name}": "Ouvrir {name}",
+    "View {name} full size": "Voir {name} en grand", "Verify credential": "Vérifier le certificat", "Certificate": "Certificat", "Close": "Fermer",
+    "Have an Awesome Project <br> Idea?": "Vous avez une idée <br> de projet ?", "Let's Discuss": "Parlons-en",
+    "Fill out the form below and let's bring your vision to life. I will respond to your inquiry within 24 hours.": "Remplissez le formulaire ci-dessous et donnons vie à votre projet. Je vous réponds sous 24 heures.",
+    "Full Name": "Nom complet", "Email Address": "Adresse e-mail", "Phone Number": "Numéro de téléphone", "Service Needed": "Service souhaité",
+    "Budget (Optional)": "Budget (facultatif)", "Preferred Deadline (Optional)": "Délai souhaité (facultatif)", "Project Description": "Description du projet",
+    "Your full name": "Votre nom complet", "you@example.com": "vous@exemple.com", "Select a service": "Choisissez un service",
+    "e.g. 40000DA - 80000DA": "ex. 40000DA - 80000DA", "e.g. 20/10/2026": "ex. 20/10/2026",
+    "Please describe your project, goals, and requirements...": "Décrivez votre projet, vos objectifs et vos besoins...",
+    "Send Message": "Envoyer le message", "Submitting...": "Envoi en cours...",
+    "Full Name is required": "Le nom complet est obligatoire", "Email Address is required": "L'adresse e-mail est obligatoire",
+    "Please enter a valid email address": "Veuillez saisir une adresse e-mail valide", "Phone Number is required": "Le numéro de téléphone est obligatoire",
+    "Please enter a valid phone number (e.g. +213 5XX XX XX XX)": "Veuillez saisir un numéro de téléphone valide (ex. +213 5XX XX XX XX)",
+    "Please select a service": "Veuillez choisir un service", "Project description is required": "La description du projet est obligatoire",
+    "Thanks {name}! Your message has been sent. I'll reply within 24 hours.": "Merci {name} ! Votre message a bien été envoyé. Je vous réponds sous 24 heures.",
+    "Message sent": "Message envoyé", "Please check the form and try again.": "Vérifiez le formulaire et réessayez.",
+    "Too many messages from you in the last hour. Please try again later.": "Trop de messages envoyés en une heure. Réessayez plus tard.",
+    "Your message is ready. Send it with one click and I'll reply within 24 hours:": "Votre message est prêt. Envoyez-le en un clic et je vous réponds sous 24 heures :",
+    "Send with Gmail": "Envoyer avec Gmail", "Send with Outlook": "Envoyer avec Outlook", "Copy message": "Copier le message",
+    "Message copied. Paste it into an email to {to}": "Message copié. Collez-le dans un e-mail à {to}",
+    "All Rights Reserved.": "Tous droits réservés.", "User Terms &amp; Conditions": "Conditions d'utilisation", "Privacy Policy": "Politique de confidentialité",
+    "No preview yet": "Pas encore d'aperçu", "Video preview": "Aperçu vidéo", "{name} on GitHub": "{name} sur GitHub", "View": "Voir",
+    "Our Work": "Mes réalisations", "Projects for this service are coming soon.": "Les projets de ce service arrivent bientôt.",
+    "Want to see more?": "Envie d'en voir plus ?",
+    "Let's build something <span class=\"text-brand-orange\">together</span>.": "Construisons quelque chose <span class=\"text-brand-orange\">ensemble</span>.",
+    "Start a Project": "Démarrer un projet"
+  };
+  /* interface text: the English text is the key, French comes from I18N_FR */
+  function tr(str, vars) {
+    var out = LANG === "fr" && Object.prototype.hasOwnProperty.call(I18N_FR, str) ? I18N_FR[str] : str;
+    if (vars) out = out.replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; });
+    return out;
+  }
+  /* content: any field "xFr" filled in the admin replaces "x" when the site is in French */
+  function hasText(v) { return Array.isArray(v) ? v.length > 0 : v != null && String(v).trim() !== ""; }
+  function localize(d) {
+    if (LANG !== "fr") return d;
+    var c = clone(d);
+    var apply = function (o) {
+      if (!o || typeof o !== "object") return;
+      Object.keys(o).forEach(function (k) { var m = /^(.+)Fr$/.exec(k); if (m && hasText(o[k])) o[m[1]] = o[k]; });
+    };
+    apply(c.profile);
+    ["services", "projects", "experience", "certificates"].forEach(function (key) { (c[key] || []).forEach(apply); });
+    return c;
+  }
+  /* keep hyphenated words like "Full-Stack" on one line in big titles */
+  function keepWords(html) { return String(html).replace(/([^\s<>]+-[^\s<>]+)/g, '<span class="nowrap-w">$1</span>'); }
+  function langSwitchHTML(extra) {
+    return '<div class="lang-sw' + (extra ? " " + extra : "") + '" role="group" aria-label="' + tr("Language") + '">' +
+      ["en", "fr"].map(function (l) {
+        return '<button type="button" data-lang="' + l + '" lang="' + l + '" aria-pressed="' + (LANG === l ? "true" : "false") + '" title="' + (l === "fr" ? "Français" : "English") + '">' + l.toUpperCase() + "</button>";
+      }).join("") + "</div>";
+  }
+  function setLang(l) {
+    if ((l !== "en" && l !== "fr") || l === LANG) return;
+    LANG = l;
+    try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+    document.documentElement.lang = l;
+    var anchor = null, off = 0;
+    var mid = window.innerHeight / 2;
+    $$("main > section").some(function (el) { var r = el.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) { anchor = el.id; off = r.top; return true; } return false; });
+    closeEmailMenu();
+    renderSite();
+    var el = anchor && document.getElementById(anchor);
+    if (el) window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - off, behavior: "instant" });
+    var again = $$('[data-lang="' + l + '"]').filter(function (b) { return b.offsetParent !== null; })[0];
+    if (again) { try { again.focus({ preventScroll: true }); } catch (e) {} }
+  }
 
   var PUBLISHED = JSON.parse(document.getElementById("site-data").textContent);
   var PUBLISHED_STR = JSON.stringify(PUBLISHED);
@@ -228,11 +335,11 @@
   }
 
   function navItems(d) {
-    var v = vis(d), items = [["#home", "Home"], ["#about", "About"]];
-    if (v.service) items.push(["#service", "Service"]);
-    if (v.project || v.projects) items.push([v.project ? "#project" : "#projects", "Project"]);
-    if (v.certificates) items.push(["#certificates", "Certificates"]);
-    items.push(["#contact", "Contact"]);
+    var v = vis(d), items = [["#home", tr("Home")], ["#about", tr("About")]];
+    if (v.service) items.push(["#service", tr("Service")]);
+    if (v.project || v.projects) items.push([v.project ? "#project" : "#projects", tr("Project")]);
+    if (v.certificates) items.push(["#certificates", tr("Certificates")]);
+    items.push(["#contact", tr("Contact")]);
     return items;
   }
 
@@ -252,7 +359,7 @@
     add("github", "GitHub", safeUrl(l.github), true);
     add("instagram", "Instagram", safeUrl(l.instagram), true);
     var email = String(p.email || "").trim();
-    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) out.push({ key: "mail", label: "Email", href: "mailto:" + email, external: false, menu: true });
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) out.push({ key: "mail", label: tr("Email"), href: "mailto:" + email, external: false, menu: true });
     var wa = String(l.whatsapp || "").trim() || String(p.phone || "").trim();
     var waHref = /^https?:\/\//i.test(wa) ? wa : (wa.replace(/\D/g, "").length >= 8 ? "https://wa.me/" + wa.replace(/\D/g, "") : "");
     add("whatsapp", "WhatsApp", waHref, true);
@@ -294,11 +401,11 @@
     m.id = "emailMenu";
     m.setAttribute("role", "menu");
     m.className = "a-pop fixed z-[120] bg-brand-dark border border-white/10 rounded-[1.5rem] p-2 shadow-2xl min-w-[220px]";
-    m.innerHTML = '<p class="px-4 pt-2 pb-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Email me</p>' +
+    m.innerHTML = '<p class="px-4 pt-2 pb-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/40">' + tr("Email me") + '</p>' +
       '<p class="px-4 pb-3 text-sm font-semibold text-white break-all">' + esc(L.to) + "</p>" +
-      '<a role="menuitem" href="' + esc(L.gmail) + '" target="_blank" rel="noreferrer" class="' + ITEM + '">' + ic("mail", "w-4 h-4") + "Write in Gmail</a>" +
-      '<a role="menuitem" href="' + esc(L.outlook) + '" target="_blank" rel="noreferrer" class="' + ITEM + '">' + ic("mail", "w-4 h-4") + "Write in Outlook</a>" +
-      '<button type="button" role="menuitem" data-email-copy class="' + ITEM + '">' + ic("check", "w-4 h-4") + "Copy address</button>";
+      '<a role="menuitem" href="' + esc(L.gmail) + '" target="_blank" rel="noreferrer" class="' + ITEM + '">' + ic("mail", "w-4 h-4") + tr("Write in Gmail") + "</a>" +
+      '<a role="menuitem" href="' + esc(L.outlook) + '" target="_blank" rel="noreferrer" class="' + ITEM + '">' + ic("mail", "w-4 h-4") + tr("Write in Outlook") + "</a>" +
+      '<button type="button" role="menuitem" data-email-copy class="' + ITEM + '">' + ic("check", "w-4 h-4") + tr("Copy address") + "</button>";
     document.body.appendChild(m);
     emailBtn = btn;
     btn.setAttribute("aria-expanded", "true");
@@ -320,7 +427,7 @@
   }
   function copyEmail() {
     var to = emailLinks().to;
-    copyText(to, "Email address copied: " + to, closeEmailMenu);
+    copyText(to, tr("Email address copied: {to}", { to: to }), closeEmailMenu);
   }
   var lastMessage = "";
   function fallbackCopy(text) {
@@ -336,8 +443,11 @@
     if (!links.length) return "";
     var CLS = "group relative w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-[#171717] hover:bg-brand-purple transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple";
     return '<div class="social-rail hidden md:block fixed left-4 top-1/2 -translate-y-1/2 z-[80] pointer-events-none">' +
-      '<nav class="anim-left pointer-events-auto flex flex-col items-center gap-1.5 bg-brand-dark/90 backdrop-blur-md rounded-full p-1.5 border border-white/10 shadow-2xl" aria-label="Contact and social links">' +
+      '<nav class="anim-left pointer-events-auto flex flex-col items-center gap-1.5 bg-brand-dark/90 backdrop-blur-md rounded-full p-1.5 border border-white/10 shadow-2xl" aria-label="' + tr("Contact and social links") + '">' +
         links.map(function (c) { return contactLinkHTML(c, CLS, "w-[18px] h-[18px]", true); }).join("") +
+        '<span class="lang-rail" aria-hidden="true"></span>' +
+        '<button type="button" data-lang="' + (LANG === "fr" ? "en" : "fr") + '" class="lang-rail lang-rail-btn ' + CLS + '" aria-label="' + (LANG === "fr" ? "View in English" : "Voir en français") + '">' + (LANG === "fr" ? "EN" : "FR") +
+          '<span class="pointer-events-none absolute left-full ml-3 px-3 py-1.5 rounded-full bg-brand-dark text-white text-xs font-bold whitespace-nowrap border border-white/10 shadow-xl opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0 transition-all duration-200">' + (LANG === "fr" ? "English" : "Français") + "</span></button>" +
       "</nav></div>";
   }
 
@@ -346,30 +456,31 @@
     var link = function (n) { return '<a href="' + n[0] + '" data-nav="' + n[0] + '" class="' + NAVLINK + '">' + n[1] + "</a>"; };
     var SOC = "w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-purple hover:text-[#171717] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple";
     return '<header class="fixed top-0 left-0 w-full z-[100] pointer-events-none">' +
-      '<div class="w-full max-w-3xl mx-auto px-4 pointer-events-auto" style="padding-top: calc(env(safe-area-inset-top, 0px) + 1.5rem);">' +
-        '<nav class="bg-brand-dark/90 backdrop-blur-md rounded-full py-2 px-4 flex items-center justify-between border border-white/10 shadow-2xl relative" aria-label="Main">' +
+      '<div class="w-full max-w-3xl mx-auto px-4 pointer-events-auto relative" style="padding-top: calc(env(safe-area-inset-top, 0px) + 1.5rem);">' +
+        '<nav class="bg-brand-dark/90 backdrop-blur-md rounded-full py-2 px-4 flex items-center justify-between border border-white/10 shadow-2xl relative" aria-label="' + tr("Main") + '">' +
           '<div class="hidden md:grid flex-1 grid-cols-[1fr_auto_1fr] items-center">' +
             '<div class="flex items-center gap-1 lg:gap-4 justify-self-start">' + items.slice(0, half).map(link).join("") + "</div>" +
-            '<a href="#home" data-scroll class="shrink-0 group justify-self-center px-3 lg:px-4" aria-label="Back to top"><span class="block w-12 h-12 group-hover:scale-110 transition-transform">' + LOGO + "</span></a>" +
+            '<a href="#home" data-scroll class="shrink-0 group justify-self-center px-3 lg:px-4" aria-label="' + tr("Back to top") + '"><span class="block w-12 h-12 group-hover:scale-110 transition-transform">' + LOGO + "</span></a>" +
             '<div class="flex items-center gap-1 lg:gap-4 justify-self-end">' + items.slice(half).map(link).join("") + "</div>" +
           "</div>" +
           '<div class="flex md:hidden w-full items-center justify-between">' +
-            '<a href="#home" data-scroll class="shrink-0 group" aria-label="Back to top"><span class="block w-10 h-10 group-hover:scale-110 transition-transform">' + LOGO + "</span></a>" +
-            '<button id="menuBtn" type="button" class="p-2 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple" aria-label="Open navigation menu" aria-expanded="false">' + ic("menu", "w-6 h-6") + "</button>" +
+            '<a href="#home" data-scroll class="shrink-0 group" aria-label="' + tr("Back to top") + '"><span class="block w-10 h-10 group-hover:scale-110 transition-transform">' + LOGO + "</span></a>" +
+            '<div class="flex items-center gap-2">' + langSwitchHTML() + '<button id="menuBtn" type="button" class="p-2 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple" aria-label="' + tr("Open navigation menu") + '" aria-expanded="false">' + ic("menu", "w-6 h-6") + "</button></div>" +
           "</div>" +
         "</nav>" +
+        '<div class="lang-sat">' + langSwitchHTML("lang-sw-pill") + "</div>" +
       "</div>" +
       '<div id="drawer" hidden class="md:hidden">' +
         '<div data-drawer-close class="drawer-overlay fixed inset-0 bg-[#0b0b0c]/85 backdrop-blur-md z-[100] pointer-events-auto" aria-hidden="true"></div>' +
-        '<div class="drawer-panel fixed top-0 right-0 w-full md:w-[380px] bg-brand-dark border-l border-white/10 p-8 md:p-12 shadow-2xl flex flex-col z-[101] text-white pointer-events-auto" style="height: 100vh; height: 100dvh; padding-top: calc(env(safe-area-inset-top, 0px) + 2rem); padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 2rem);" role="dialog" aria-modal="true" aria-label="Navigation menu">' +
+        '<div class="drawer-panel fixed top-0 right-0 w-full md:w-[380px] bg-brand-dark border-l border-white/10 p-8 md:p-12 shadow-2xl flex flex-col z-[101] text-white pointer-events-auto" style="height: 100vh; height: 100dvh; padding-top: calc(env(safe-area-inset-top, 0px) + 2rem); padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 2rem);" role="dialog" aria-modal="true" aria-label="' + tr("Navigation menu") + '">' +
           '<div class="flex items-center justify-between border-b border-white/10 pb-6 mb-10 shrink-0">' +
             '<div class="flex items-center gap-3"><span class="block w-10 h-10">' + LOGO + '</span><span class="text-xl font-black uppercase tracking-[0.2em] text-white">' + esc(d.profile.firstName) + "</span></div>" +
-            '<button type="button" data-drawer-close class="p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple" aria-label="Close navigation menu">' + ic("x", "w-8 h-8") + "</button>" +
+            '<button type="button" data-drawer-close class="p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple" aria-label="' + tr("Close navigation menu") + '">' + ic("x", "w-8 h-8") + "</button>" +
           "</div>" +
           '<div class="flex-1 flex flex-col justify-center overflow-y-auto"><nav class="flex flex-col gap-5">' +
             items.map(function (n) { return '<a href="' + n[0] + '" data-nav="' + n[0] + '" class="drawer-link w-full flex items-center justify-between rounded-xl px-2 py-4 text-3xl md:text-4xl font-black tracking-tight transition-all group"><span>' + n[1] + "</span>" + ic("arrow-up-right", "drawer-arrow w-8 h-8 transition-transform duration-300") + "</a>"; }).join("") +
           "</nav></div>" +
-          '<div class="pt-10 border-t border-white/10 shrink-0"><p class="text-white/30 text-[10px] font-black uppercase tracking-[0.25em] mb-4">Let\'s Connect</p><div class="flex flex-wrap gap-3">' + contactLinks(d).map(function (c) { return contactLinkHTML(c, SOC, "w-5 h-5", false); }).join("") + "</div></div>" +
+          '<div class="pt-10 border-t border-white/10 shrink-0"><p class="text-white/30 text-[10px] font-black uppercase tracking-[0.25em] mb-4">' + tr("Let\'s Connect") + '</p><div class="flex flex-wrap gap-3">' + contactLinks(d).map(function (c) { return contactLinkHTML(c, SOC, "w-5 h-5", false); }).join("") + "</div></div>" +
         "</div>" +
       "</div>" +
       "</header>";
@@ -380,22 +491,22 @@
     var photo = imgSrc(p.photo) ? '<img src="' + imgSrc(p.photo) + '" alt="' + esc(p.fullName) + '" class="w-full h-auto object-contain block">' : SILHOUETTE;
     var gh = safeUrl(p.links && p.links.github);
     var stars = function (cls) { return ic("star", cls, true) + ic("star", cls, true) + ic("star", cls, true); };
-    var line2 = p.role ? "<br>a " + '<span class="text-brand-orange italic font-light">' + esc(p.role) + "</span>" : "";
-    var line3 = p.specialty ? (p.role ? ' &amp; <br class="md:hidden">' : "<br>") + '<span class="border-b-4 border-brand-purple md:whitespace-nowrap">' + esc(p.specialty) + "</span>" : "";
+    var line2 = p.role ? "<br>" + tr("a ") + '<span class="text-brand-orange italic font-light">' + keepWords(esc(p.role)) + "</span>" : "";
+    var line3 = p.specialty ? (p.role ? ' &amp; <br class="md:hidden">' : "<br>") + '<span class="border-b-4 border-brand-purple md:whitespace-nowrap">' + keepWords(esc(p.specialty)) + "</span>" : "";
     var BTN = "px-[2.3em] py-[0.86em] text-[max(12px,0.875em)] rounded-full font-bold flex items-center gap-2 transition-all whitespace-nowrap";
     return '<section id="home" data-m="section" class="hero relative pt-[max(7.5rem,10em)] pb-[4em] px-6 bg-background flex flex-col items-center overflow-hidden scroll-mt-28 lg:scroll-mt-32">' +
       (p.testimonial ? '<div class="absolute top-[30%] left-[6%] lg:left-[8%] xl:left-[10%] 2xl:left-[13%] w-[12.5em] hidden md:block anim-left">' + STROKES.replace('class="w-32 h-auto"', 'class="w-[8em] h-auto"') +
         '<p class="mt-[2.85em] text-[max(11px,0.875em)] text-foreground/70 leading-relaxed font-semibold italic">' + esc(p.testimonial) + "</p></div>" : "") +
       (p.years ? '<div class="absolute top-[40%] right-[6%] lg:right-[10%] hidden md:block anim-right text-center">' +
         '<div class="flex gap-[0.25em] mb-[0.5em] text-brand-orange justify-center">' + stars("w-[max(18px,1.75em)] h-[max(18px,1.75em)]") + "</div>" +
-        '<p class="text-[max(22px,2.25em)] font-black text-ink tracking-tighter leading-tight">' + esc(p.years) + '</p><p class="text-[max(9px,0.625em)] uppercase tracking-[0.2em] text-foreground/40 font-black mt-1">Experience</p></div>' : "") +
-      '<div class="bg-surface rounded-full px-[max(16px,1.25em)] py-[max(4px,0.375em)] shadow-sm border border-line mb-[1.5em] inline-flex items-center gap-2"><span class="text-[max(10px,0.6875em)] font-black uppercase tracking-widest text-foreground/60">Hello!</span></div>' +
+        '<p class="text-[max(22px,2.25em)] font-black text-ink tracking-tighter leading-tight">' + esc(p.years) + '</p><p class="text-[max(9px,0.625em)] uppercase tracking-[0.2em] text-foreground/40 font-black mt-1">' + tr("Experience") + '</p></div>' : "") +
+      '<div class="bg-surface rounded-full px-[max(16px,1.25em)] py-[max(4px,0.375em)] shadow-sm border border-line mb-[1.5em] inline-flex items-center gap-2"><span class="text-[max(10px,0.6875em)] font-black uppercase tracking-widest text-foreground/60">' + tr("Hello!") + '</span></div>' +
       '<h1 id="about" data-m="h1" class="text-[max(2.25rem,4.5em)] font-black text-center tracking-tighter leading-[0.9] max-w-[14.25em] mx-auto text-ink scroll-mt-28 lg:scroll-mt-32">' +
-        "I'm " + esc(p.firstName) + "," + line2 + line3 + (p.role || p.specialty ? "." : "") +
+        tr("I'm ") + esc(p.firstName) + "," + line2 + line3 + (p.role || p.specialty ? "." : "") +
       "</h1>" +
       (p.testimonial || p.years ? '<div class="md:hidden w-full max-w-md mx-auto mt-6 flex items-center justify-between gap-5 text-left">' +
         (p.testimonial ? '<div class="flex items-start gap-3 max-w-[62%] anim-left"><span class="block w-10 shrink-0">' + STROKES.replace("w-32", "w-10") + '</span><p class="text-xs text-foreground/70 leading-relaxed font-semibold italic">' + esc(p.testimonial) + "</p></div>" : "<span></span>") +
-        (p.years ? '<div class="text-center shrink-0 anim-right"><div class="flex gap-1 mb-1 text-brand-orange justify-center">' + stars("w-4 h-4") + '</div><p class="text-2xl font-black text-ink tracking-tighter">' + esc(p.years) + '</p><p class="text-[9px] uppercase tracking-[0.2em] text-foreground/40 font-black mt-1">Experience</p></div>' : "") +
+        (p.years ? '<div class="text-center shrink-0 anim-right"><div class="flex gap-1 mb-1 text-brand-orange justify-center">' + stars("w-4 h-4") + '</div><p class="text-2xl font-black text-ink tracking-tighter">' + esc(p.years) + '</p><p class="text-[9px] uppercase tracking-[0.2em] text-foreground/40 font-black mt-1">' + tr("Experience") + '</p></div>' : "") +
       "</div>" : "") +
       '<div data-m="photo" class="relative mt-[1em] w-full max-w-[42em] mx-auto flex flex-col items-center">' +
         '<div class="hero-dome absolute bottom-0 left-1/2 -translate-x-1/2 w-full z-0" aria-hidden="true"></div>' +
@@ -421,8 +532,8 @@
     if (!vis(d).service) return "";
     var cards = d.services.map(function (s) {
       var visual = imgSrc(s.image) ? '<img src="' + imgSrc(s.image) + '" alt="' + esc(s.title) + '" class="w-full h-full object-cover rounded-[1.5rem] grayscale group-hover:grayscale-0 transition-all duration-500">' : (ART[s.art] || ART.growth);
-      return '<div role="button" tabindex="0" data-service="' + esc(s.id) + '" aria-label="See ' + esc(s.title) + ' projects" class="bg-brand-purple rounded-[2.5rem] overflow-hidden group cursor-pointer h-full flex flex-col p-2 shadow-2xl transition-transform hover:-translate-y-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-orange">' +
-        '<div class="p-8 pb-4"><h3 class="text-2xl font-black text-[#171717] leading-tight group-hover:text-[#171717]/80 transition-colors">' + esc(s.title) + "</h3>" +
+      return '<div role="button" tabindex="0" data-service="' + esc(s.id) + '" aria-label="' + tr("See {name} projects", { name: esc(s.title) }) + '" class="bg-brand-purple rounded-[2.5rem] overflow-hidden group cursor-pointer h-full flex flex-col p-2 shadow-2xl transition-transform hover:-translate-y-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-orange">' +
+        '<div class="p-8 pb-4"><h3 class="text-2xl font-black text-[#171717] leading-tight group-hover:text-[#171717]/80 transition-colors">' + keepWords(esc(s.title)) + "</h3>" +
           "</div>" +
         '<div class="mt-auto p-4"><div class="bg-white/40 backdrop-blur-md rounded-[2rem] overflow-hidden relative aspect-[1.1/1] flex items-center justify-center p-3 shadow-inner">' + visual +
           '<div class="absolute bottom-6 right-6 w-14 h-14 bg-[#171717] rounded-full flex items-center justify-center text-white scale-90 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-300 shadow-xl">' + ic("arrow-up-right", "w-7 h-7") + "</div>" +
@@ -431,7 +542,7 @@
     return '<section id="service" class="bg-brand-dark py-32 px-6 relative overflow-hidden rounded-[2.5rem] md:rounded-[4rem] -mt-20 z-10 mx-4 scroll-mt-28 lg:scroll-mt-32">' +
       '<div class="max-w-7xl mx-auto relative z-10">' +
         '<div class="flex flex-col md:flex-row justify-between items-start mb-24 gap-12">' +
-          '<div class="max-w-xl"><h2 class="text-5xl md:text-6xl font-black text-white mb-0 leading-tight">My <span class="text-brand-purple italic font-light">Services</span></h2></div>' +
+          '<div class="max-w-xl"><h2 class="text-5xl md:text-6xl font-black text-white mb-0 leading-tight">' + tr("My") + ' <span class="text-brand-purple italic font-light">' + tr("Services") + '</span></h2></div>' +
           '<div class="max-w-md pt-4"><p class="text-white/50 leading-relaxed font-medium text-sm md:text-base">' + esc(d.profile.servicesIntro) + "</p></div>" +
         "</div>" +
         (d.services.length ? '<div class="grid grid-cols-1 ' + (d.services.length === 4 ? "md:grid-cols-2 svc-grid-4" : "md:grid-cols-3") + ' gap-8">' + cards + "</div>" : emptyOwner("Add your first service and it shows up here.", "services", true)) +
@@ -443,13 +554,13 @@
     if (!vis(d).project) return "";
     var rows = d.experience.map(function (x, y) {
       return '<div class="flex flex-col md:flex-row items-center gap-12 md:gap-24 ' + (y % 2 !== 0 ? "md:flex-row-reverse" : "") + '">' +
-        '<div class="flex-1 text-center ' + (y % 2 === 0 ? "md:text-right" : "md:text-left") + '"><h3 class="text-3xl font-black text-ink mb-1">' + esc(x.company) + '</h3><p class="text-xs font-black opacity-30 uppercase tracking-[0.2em] text-ink">' + esc(x.date) + "</p></div>" +
+        '<div class="flex-1 text-center ' + (y % 2 === 0 ? "md:text-right" : "md:text-left") + '"><h3 class="text-3xl font-black text-ink mb-1">' + keepWords(esc(x.company)) + '</h3><p class="text-xs font-black opacity-30 uppercase tracking-[0.2em] text-ink">' + esc(x.date) + "</p></div>" +
         '<div class="relative flex items-center justify-center shrink-0"><div class="w-12 h-12 rounded-full border-4 border-surface bg-muted z-10 flex items-center justify-center shadow-lg"><div class="w-4 h-4 rounded-full ' + (x.dot === "dark" ? "bg-ink" : "bg-ink/20") + '"></div></div></div>' +
-        '<div class="flex-1 text-center md:text-left"><h4 class="text-2xl font-black text-ink mb-3">' + esc(x.role) + '</h4><p class="text-sm text-ink/50 leading-relaxed max-w-sm mx-auto md:mx-0 font-medium">' + esc(x.text) + "</p></div>" +
+        '<div class="flex-1 text-center md:text-left"><h4 class="text-2xl font-black text-ink mb-3">' + keepWords(esc(x.role)) + '</h4><p class="text-sm text-ink/50 leading-relaxed max-w-sm mx-auto md:mx-0 font-medium">' + esc(x.text) + "</p></div>" +
         "</div>";
     }).join("");
     return '<section id="project" class="py-32 px-6 bg-muted scroll-mt-28 lg:scroll-mt-32"><div class="max-w-6xl mx-auto">' +
-      '<h2 class="text-5xl md:text-7xl font-black text-center mb-32 text-ink tracking-tighter">My Work Experience</h2>' +
+      '<h2 class="text-5xl md:text-7xl font-black text-center mb-32 text-ink tracking-tighter">' + tr("My Work Experience") + '</h2>' +
       (d.experience.length ? '<div class="relative"><div class="absolute left-1/2 top-0 bottom-0 w-px bg-ink/10 hidden md:block"></div><div class="space-y-32">' + rows + "</div></div>" : emptyOwner("Add your work experience and it shows up as a timeline here.", "experience", false)) +
       "</div></section>";
   }
@@ -470,8 +581,8 @@
       var on = id === cur;
       return '<button type="button" data-proj-filter="' + esc(id) + '" aria-pressed="' + (on ? "true" : "false") + '" class="proj-filter">' + esc(label) + '<span class="proj-count">' + n + "</span></button>";
     };
-    return '<div class="proj-filters" role="group" aria-label="Filter projects by service">' +
-      pill("all", "All projects", d.projects.length) +
+    return '<div class="proj-filters" role="group" aria-label="' + tr("Filter projects by service") + '">' +
+      pill("all", tr("All projects"), d.projects.length) +
       used.map(function (s) { return pill(s.id, s.title, counts[s.id]); }).join("") + "</div>";
   }
   function filterProjects(id) {
@@ -503,16 +614,16 @@
         '<div class="relative rounded-[2rem] overflow-hidden aspect-[4/3] bg-muted">' + img +
           (p.category ? '<span class="absolute top-4 left-4 bg-white/85 backdrop-blur-md rounded-full px-4 py-1.5 text-[11px] font-black uppercase tracking-widest text-[#171717]">' + esc(p.category) + "</span>" : "") + "</div>" +
         '<div class="p-6 pt-5 flex flex-col flex-1">' +
-          '<h3 class="text-2xl font-black text-ink leading-tight mb-2">' + esc(p.title) + "</h3>" +
+          '<h3 class="text-2xl font-black text-ink leading-tight mb-2">' + keepWords(esc(p.title)) + "</h3>" +
           '<p class="text-sm text-ink/50 leading-relaxed font-medium mb-6">' + esc(p.description) + "</p>" +
           '<div class="mt-auto flex items-end justify-between gap-4"><div class="flex flex-wrap gap-2">' + tags.map(function (t) { return '<span class="bg-muted rounded-full px-3 py-1 text-xs font-bold text-ink/60">' + esc(t) + "</span>"; }).join("") + "</div>" +
-            (link ? '<a href="' + esc(link) + '" target="_blank" rel="noreferrer" aria-label="Open ' + esc(p.title) + '" class="shrink-0 w-12 h-12 bg-brand-dark text-white rounded-full flex items-center justify-center shadow-xl hover:bg-brand-orange transition-colors">' + ic("arrow-up-right", "w-6 h-6") + "</a>" : "") +
+            (link ? '<a href="' + esc(link) + '" target="_blank" rel="noreferrer" aria-label="' + tr("Open {name}", { name: esc(p.title) }) + '" class="shrink-0 w-12 h-12 bg-brand-dark text-white rounded-full flex items-center justify-center shadow-xl hover:bg-brand-orange transition-colors">' + ic("arrow-up-right", "w-6 h-6") + "</a>" : "") +
           "</div></div></article></div>";
     }).join("");
     return '<section id="projects" class="pb-32 ' + (vis(d).project ? "" : "pt-32 ") + 'px-6 bg-muted scroll-mt-28 lg:scroll-mt-32"><div class="max-w-7xl mx-auto">' +
-      '<div class="flex flex-col md:flex-row justify-between items-start mb-16 gap-12"><div class="max-w-xl"><h2 class="text-5xl md:text-6xl font-black text-ink mb-0 leading-tight">My <span class="text-brand-orange italic font-light">Projects</span></h2></div>' +
+      '<div class="flex flex-col md:flex-row justify-between items-start mb-16 gap-12"><div class="max-w-xl"><h2 class="text-5xl md:text-6xl font-black text-ink mb-0 leading-tight">' + tr("My") + ' <span class="text-brand-orange italic font-light">' + tr("Projects") + '</span></h2></div>' +
       '<div class="max-w-md pt-4"><p class="text-ink/50 leading-relaxed font-medium text-sm md:text-base">' + esc(d.profile.projectsIntro) + "</p></div></div>" +
-      (d.projects.length ? projectFilterHTML(d) + '<div id="projGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">' + cards + "</div>" + '<p id="projEmpty" hidden class="text-center text-ink/50 font-semibold">No project in this service yet.</p>' : emptyOwner("Your projects will appear here. Add one from the admin page.", "projects", false)) +
+      (d.projects.length ? projectFilterHTML(d) + '<div id="projGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">' + cards + "</div>" + '<p id="projEmpty" hidden class="text-center text-ink/50 font-semibold">' + tr("No project in this service yet.") + '</p>' : emptyOwner("Your projects will appear here. Add one from the admin page.", "projects", false)) +
       "</div></section>";
   }
 
@@ -521,7 +632,7 @@
     var cards = d.certificates.map(function (c, i) {
       var link = safeUrl(c.link);
       return '<article class="h-full bg-white/5 border border-white/10 rounded-[2.5rem] p-2 flex flex-col transition-transform hover:-translate-y-2">' +
-        '<button type="button" data-cert="' + i + '" class="group relative rounded-[2rem] overflow-hidden aspect-[4/3] bg-white flex items-center justify-center focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-purple" aria-label="View ' + esc(c.title) + ' full size">' +
+        '<button type="button" data-cert="' + i + '" class="group relative rounded-[2rem] overflow-hidden aspect-[4/3] bg-white flex items-center justify-center focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-purple" aria-label="' + tr("View {name} full size", { name: esc(c.title) }) + '">' +
           (imgSrc(c.image) ? '<img src="' + imgSrc(c.image) + '" alt="' + esc(c.title) + '" class="w-full h-full object-contain p-3 grayscale group-hover:grayscale-0 transition-all duration-500">' : '<span class="text-[#171717]/30">' + ICON.image + "</span>") +
           '<span class="absolute bottom-4 right-4 w-12 h-12 bg-[#171717] text-white rounded-full flex items-center justify-center shadow-xl scale-90 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 transition-all duration-300">' + ic("zoom", "w-5 h-5") + "</span>" +
         "</button>" +
@@ -529,12 +640,12 @@
           '<p class="text-brand-orange text-xs font-black uppercase tracking-[0.2em] mb-2">' + esc(c.issuer) + "</p>" +
           '<h3 class="text-xl font-black text-white leading-snug">' + esc(c.title) + "</h3>" +
           (c.date ? '<p class="text-sm text-white/40 font-medium mt-2">' + esc(c.date) + "</p>" : "") +
-          (link ? '<a href="' + esc(link) + '" target="_blank" rel="noreferrer" class="mt-5 self-start inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-white transition-colors">Verify credential ' + ic("arrow-up-right", "w-4 h-4") + "</a>" : "") +
+          (link ? '<a href="' + esc(link) + '" target="_blank" rel="noreferrer" class="mt-5 self-start inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-white transition-colors">' + tr("Verify credential") + ' ' + ic("arrow-up-right", "w-4 h-4") + "</a>" : "") +
         "</div></article>";
     }).join("");
     return '<section id="certificates" class="bg-muted px-4 pb-24 scroll-mt-28 lg:scroll-mt-32">' +
       '<div class="bg-brand-dark py-32 px-6 relative overflow-hidden rounded-[2.5rem] md:rounded-[4rem]"><div class="max-w-7xl mx-auto relative z-10">' +
-        '<div class="flex flex-col md:flex-row justify-between items-start mb-24 gap-12"><div class="max-w-xl"><h2 class="text-5xl md:text-6xl font-black text-white mb-0 leading-tight">My <span class="text-brand-purple italic font-light">Certificates</span></h2></div>' +
+        '<div class="flex flex-col md:flex-row justify-between items-start mb-24 gap-12"><div class="max-w-xl"><h2 class="text-5xl md:text-6xl font-black text-white mb-0 leading-tight">' + tr("My") + ' <span class="text-brand-purple italic font-light">' + tr("Certificates") + '</span></h2></div>' +
         '<div class="max-w-md pt-4"><p class="text-white/50 leading-relaxed font-medium text-sm md:text-base">' + esc(d.profile.certificatesIntro) + "</p></div></div>" +
         (d.certificates.length ? '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">' + cards + "</div>" : emptyOwner("Upload your certificates and they show up here.", "certificates", true)) +
       "</div></div></section>";
@@ -547,21 +658,21 @@
     };
     var dot = '<div class="w-2.5 h-2.5 rounded-full bg-brand-orange shadow-[0_0_10px_rgba(254,139,92,0.5)]"></div>';
     return '<section id="contact" class="py-24 px-6 text-center bg-muted scroll-mt-28 lg:scroll-mt-32"><div class="max-w-4xl mx-auto">' +
-      '<h2 class="text-4xl md:text-7xl font-black text-ink mb-6 tracking-tighter leading-[0.9]">Have an Awesome Project <br> Idea? <span class="text-brand-orange italic font-light">Let\'s Discuss</span></h2>' +
-      '<p class="text-ink/60 font-medium max-w-lg mx-auto mb-12 text-sm md:text-base leading-relaxed">Fill out the form below and let\'s bring your vision to life. I will respond to your inquiry within 24 hours.</p>' +
+      '<h2 class="text-4xl md:text-7xl font-black text-ink mb-6 tracking-tighter leading-[0.9]">' + tr("Have an Awesome Project <br> Idea?") + ' <span class="text-brand-orange italic font-light">' + tr("Let\'s Discuss") + '</span></h2>' +
+      '<p class="text-ink/60 font-medium max-w-lg mx-auto mb-12 text-sm md:text-base leading-relaxed">' + tr("Fill out the form below and let\'s bring your vision to life. I will respond to your inquiry within 24 hours.") + '</p>' +
       '<form id="contactForm" novalidate class="bg-surface rounded-[2.5rem] p-6 sm:p-8 md:p-12 shadow-2xl border border-line max-w-3xl mx-auto text-left mb-16 relative overflow-hidden">' +
         '<div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label for="company">Company</label><input id="company" name="company" tabindex="-1" autocomplete="off"></div>' +
         '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">' +
-          field("fullName", "Full Name", true, '<input id="fullName" name="fullName" autocomplete="name" class="' + FORM_INPUT + '" placeholder="Your full name">') +
-          field("email", "Email Address", true, '<input id="email" name="email" type="email" autocomplete="email" class="' + FORM_INPUT + '" placeholder="you@example.com">') +
-          field("phone", "Phone Number", true, '<input id="phone" name="phone" type="tel" autocomplete="tel" class="' + FORM_INPUT + '" placeholder="+213 540309216">') +
-          field("service-select", "Service Needed", true, '<div class="relative"><select id="service-select" name="service" class="' + FORM_INPUT + ' appearance-none cursor-pointer"><option value="" disabled selected>Select a service</option>' + opts + '</select><div class="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-ink/40">' + ic("chevron-down", "w-5 h-5") + "</div></div>") +
-          field("budget", "Budget (Optional)", false, '<input id="budget" name="budget" class="' + FORM_INPUT + '" placeholder="e.g. 40000DA - 80000DA">') +
-          field("deadline", "Preferred Deadline (Optional)", false, '<input id="deadline" name="deadline" class="' + FORM_INPUT + '" placeholder="e.g. 20/10/2026">') +
+          field("fullName", tr("Full Name"), true, '<input id="fullName" name="fullName" autocomplete="name" class="' + FORM_INPUT + '" placeholder="' + tr("Your full name") + '">') +
+          field("email", tr("Email Address"), true, '<input id="email" name="email" type="email" autocomplete="email" class="' + FORM_INPUT + '" placeholder="' + tr("you@example.com") + '">') +
+          field("phone", tr("Phone Number"), true, '<input id="phone" name="phone" type="tel" autocomplete="tel" class="' + FORM_INPUT + '" placeholder="+213 540309216">') +
+          field("service-select", tr("Service Needed"), true, '<div class="relative"><select id="service-select" name="service" class="' + FORM_INPUT + ' appearance-none cursor-pointer"><option value="" disabled selected>' + tr("Select a service") + '</option>' + opts + '</select><div class="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-ink/40">' + ic("chevron-down", "w-5 h-5") + "</div></div>") +
+          field("budget", tr("Budget (Optional)"), false, '<input id="budget" name="budget" class="' + FORM_INPUT + '" placeholder="' + tr("e.g. 40000DA - 80000DA") + '">') +
+          field("deadline", tr("Preferred Deadline (Optional)"), false, '<input id="deadline" name="deadline" class="' + FORM_INPUT + '" placeholder="' + tr("e.g. 20/10/2026") + '">') +
         "</div>" +
-        '<div class="mb-6">' + field("description", "Project Description", true, '<textarea id="description" name="description" rows="4" class="' + FORM_INPUT + ' h-32 resize-none" placeholder="Please describe your project, goals, and requirements..."></textarea>') + "</div>" +
+        '<div class="mb-6">' + field("description", tr("Project Description"), true, '<textarea id="description" name="description" rows="4" class="' + FORM_INPUT + ' h-32 resize-none" placeholder="' + tr("Please describe your project, goals, and requirements...") + '"></textarea>') + "</div>" +
         '<div id="formStatus" hidden class="p-4 rounded-[1.2rem] mb-6 font-semibold text-sm"></div>' +
-        '<button id="sendBtn" type="submit" class="bg-brand-orange text-white px-12 py-5 rounded-full font-black text-xl hover:bg-brand-orange/90 transition-all shadow-xl shadow-brand-orange/20 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-3 w-full"><span>Send Message</span>' + ic("arrow-up-right", "w-6 h-6") + "</button>" +
+        '<button id="sendBtn" type="submit" class="bg-brand-orange text-white px-12 py-5 rounded-full font-black text-xl hover:bg-brand-orange/90 transition-all shadow-xl shadow-brand-orange/20 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-75 disabled:cursor-not-allowed flex items-center justify-center gap-3 w-full"><span>' + tr("Send Message") + '</span>' + ic("arrow-up-right", "w-6 h-6") + "</button>" +
       "</form>" +
       '<div class="flex flex-wrap justify-center gap-12 text-ink/30 font-black uppercase tracking-[0.2em] text-[10px]">' + (d.profile.highlights || []).map(function (h) { return '<div class="flex items-center gap-3">' + dot + esc(h) + "</div>"; }).join("") + "</div>" +
       "</div></section>";
@@ -570,15 +681,15 @@
   function footerHTML(d) {
     var p = d.profile, v = vis(d);
     var SOC = "w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-purple hover:text-[#171717] transition-all";
-    var nav = [["#home", "Home"], ["#about", "About Us"]];
-    if (v.service) nav.push(["#service", "Service"]);
-    if (v.project) nav.push(["#project", "Work Experience"]);
-    if (d.projects.length) nav.push(["#projects", "Projects"]);
-    if (d.certificates.length) nav.push(["#certificates", "Certificates"]);
-    nav.push(["#contact", "Contact"]);
+    var nav = [["#home", tr("Home")], ["#about", tr("About Us")]];
+    if (v.service) nav.push(["#service", tr("Service")]);
+    if (v.project) nav.push(["#project", tr("Work Experience")]);
+    if (d.projects.length) nav.push(["#projects", tr("Projects")]);
+    if (d.certificates.length) nav.push(["#certificates", tr("Certificates")]);
+    nav.push(["#contact", tr("Contact")]);
     var site = String(p.website || "").trim();
     return '<footer class="bg-brand-dark text-white pt-24 pb-12 px-6"><div class="max-w-7xl mx-auto">' +
-      '<div class="flex flex-col md:flex-row justify-between items-center mb-16 border-b border-white/10 pb-12"><h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8 md:mb-0 text-center md:text-left">Let\'s Connect</h2></div>' +
+      '<div class="flex flex-col md:flex-row justify-between items-center mb-16 border-b border-white/10 pb-12"><h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8 md:mb-0 text-center md:text-left">' + tr("Let\'s Connect") + '</h2></div>' +
       '<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">' +
         '<div class="col-span-1 md:col-span-1"><div class="flex items-center gap-3 mb-8"><span class="block w-12 h-12 shrink-0">' + LOGO + '</span><span class="text-2xl font-black uppercase tracking-[0.2em] text-white">' + esc(p.fullName) + "</span></div>" +
           '<p class="text-white/40 mb-10 max-w-xs leading-[1.8] font-medium text-sm">' + esc(p.bio) + '</p><div class="flex gap-4">' + socialLinks(d, ["instagram", "linkedin"], SOC) + "</div></div>" +
@@ -587,7 +698,7 @@
         '<div class="col-span-1"><h3 class="text-lg font-bold mb-6 text-brand-orange/80">Contact</h3><div class="flex flex-col gap-4 text-white/70 font-semibold break-words">' +
           (p.phone ? "<p>" + esc(p.phone) + "</p>" : "") + (p.email ? "<p>" + esc(p.email) + "</p>" : "") + (site ? "<p>" + esc(site) + "</p>" : "") + "</div></div>" +
       "</div>" +
-      '<div class="flex flex-col md:flex-row justify-between items-center text-white/40 text-sm"><p>Copyright © ' + new Date().getFullYear() + " " + esc(p.fullName) + '. All Rights Reserved.</p><div class="flex gap-8 mt-4 md:mt-0"><a href="#home" data-scroll class="hover:text-white">User Terms &amp; Conditions</a><a href="#home" data-scroll class="hover:text-white">Privacy Policy</a></div></div>' +
+      '<div class="flex flex-col md:flex-row justify-between items-center text-white/40 text-sm"><p>Copyright © ' + new Date().getFullYear() + " " + esc(p.fullName) + '. ' + tr("All Rights Reserved.") + '</p><div class="flex gap-8 mt-4 md:mt-0"><a href="#home" data-scroll class="hover:text-white">' + tr("User Terms &amp; Conditions") + '</a><a href="#home" data-scroll class="hover:text-white">' + tr("Privacy Policy") + '</a></div></div>' +
       "</div></footer>";
   }
 
@@ -600,13 +711,13 @@
 
   /* ---------- render + behaviour ---------- */
   function renderSite() {
-    var d = state.data, root = $("#root");
+    var d = state.view = localize(state.data), root = $("#root");
     var animate = state.firstRender && !reduceMotion && ("IntersectionObserver" in window);
     document.documentElement.classList.toggle("m-ready", animate);
     root.className = animate ? "" : "no-anim";
     root.innerHTML = headerHTML(d) + socialRailHTML(d) + "<main>" + heroHTML(d) + servicesHTML(d) + experienceHTML(d) + projectsHTML(d) + certificatesHTML(d) + contactHTML(d) + "</main>" + footerHTML(d) + ownerButtonHTML() +
-      '<div id="lightbox" hidden class="fixed inset-0 z-[150] bg-[#0b0b0c]/85 backdrop-blur-md p-4 md:p-10 flex items-center justify-center" role="dialog" aria-modal="true" aria-label="Certificate">' +
-        '<button type="button" data-lb-close class="absolute right-4 w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20" style="top: calc(env(safe-area-inset-top, 0px) + 1rem);" aria-label="Close">' + ic("x", "w-6 h-6") + "</button>" +
+      '<div id="lightbox" hidden class="fixed inset-0 z-[150] bg-[#0b0b0c]/85 backdrop-blur-md p-4 md:p-10 flex items-center justify-center" role="dialog" aria-modal="true" aria-label="' + tr("Certificate") + '">' +
+        '<button type="button" data-lb-close class="absolute right-4 w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20" style="top: calc(env(safe-area-inset-top, 0px) + 1rem);" aria-label="' + tr("Close") + '">' + ic("x", "w-6 h-6") + "</button>" +
         '<figure class="lb-fig max-w-5xl w-full flex flex-col items-center gap-4"><img id="lbImg" alt="" class="max-h-[78vh] w-auto max-w-full rounded-[1.5rem] bg-white object-contain shadow-2xl"><figcaption id="lbCap" class="text-white font-bold text-center"></figcaption></figure>' +
       "</div>" +
       '<div id="toaster" class="fixed z-[300] flex flex-col gap-2 items-end" style="right: 1.5rem; bottom: calc(env(safe-area-inset-bottom, 0px) + 1.5rem);" aria-live="polite"></div>' +
@@ -701,17 +812,17 @@
       var f = Object.fromEntries(new FormData(form));
       var status = $("#formStatus"); status.hidden = true;
       var phoneOk = /^\+?[0-9\s\-().]{7,20}$/.test(String(f.phone || "").trim());
-      if (!String(f.fullName || "").trim()) return notify("error", "Full Name is required");
-      if (!String(f.email || "").trim()) return notify("error", "Email Address is required");
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(f.email).trim())) return notify("error", "Please enter a valid email address");
-      if (!String(f.phone || "").trim()) return notify("error", "Phone Number is required");
-      if (!phoneOk) return notify("error", "Please enter a valid phone number (e.g. +213 5XX XX XX XX)");
-      if (!f.service) return notify("error", "Please select a service");
-      if (!String(f.description || "").trim()) return notify("error", "Project description is required");
+      if (!String(f.fullName || "").trim()) return notify("error", tr("Full Name is required"));
+      if (!String(f.email || "").trim()) return notify("error", tr("Email Address is required"));
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(f.email).trim())) return notify("error", tr("Please enter a valid email address"));
+      if (!String(f.phone || "").trim()) return notify("error", tr("Phone Number is required"));
+      if (!phoneOk) return notify("error", tr("Please enter a valid phone number (e.g. +213 5XX XX XX XX)"));
+      if (!f.service) return notify("error", tr("Please select a service"));
+      if (!String(f.description || "").trim()) return notify("error", tr("Project description is required"));
       var btn = $("#sendBtn");
       btn.disabled = true;
-      btn.innerHTML = ic("loader", "w-6 h-6 animate-spin") + "<span>Submitting...</span>";
-      var done = function () { btn.disabled = false; btn.innerHTML = "<span>Send Message</span>" + ic("arrow-up-right", "w-6 h-6"); };
+      btn.innerHTML = ic("loader", "w-6 h-6 animate-spin") + "<span>" + tr("Submitting...") + "</span>";
+      var done = function () { btn.disabled = false; btn.innerHTML = "<span>" + tr("Send Message") + "</span>" + ic("arrow-up-right", "w-6 h-6"); };
       var payload = { fullName: f.fullName, email: f.email, phone: f.phone, service: f.service, budget: f.budget || "", deadline: f.deadline || "", description: f.description, company: f.company || "", elapsed: Date.now() - shownAt };
       fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, status: r.status, d: d }; }); })
@@ -719,13 +830,13 @@
           done();
           if (res.ok) {
             status.className = "p-4 rounded-[1.2rem] mb-6 font-semibold text-sm bg-emerald-50 text-emerald-800 border border-emerald-100";
-            status.textContent = "Thanks " + String(f.fullName).trim().split(" ")[0] + "! Your message has been sent. I'll reply within 24 hours.";
+            status.textContent = tr("Thanks {name}! Your message has been sent. I'll reply within 24 hours.", { name: String(f.fullName).trim().split(" ")[0] });
             status.hidden = false;
-            notify("success", "Message sent");
+            notify("success", tr("Message sent"));
             form.reset();
             shownAt = Date.now();
           } else if (res.status === 400 || res.status === 429) {
-            notify("error", (res.d && res.d.error) || "Please check the form and try again.");
+            notify("error", LANG === "fr" ? tr(res.status === 429 ? "Too many messages from you in the last hour. Please try again later." : "Please check the form and try again.") : ((res.d && res.d.error) || "Please check the form and try again."));
           } else {
             showEmailFallback(f, status);
           }
@@ -741,17 +852,17 @@
     lastMessage = "To: " + mails.to + "\nSubject: New project inquiry from " + f.fullName + "\n\n" + body;
     status.className = "p-4 rounded-[1.2rem] mb-6 font-semibold text-sm bg-emerald-50 text-emerald-800 border border-emerald-100";
     var BTN = "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-emerald-900 border border-emerald-200 font-black text-xs hover:bg-emerald-100 transition-colors";
-    status.innerHTML = '<p class="mb-3">Your message is ready. Send it with one click and I\'ll reply within 24 hours:</p>' +
+    status.innerHTML = '<p class="mb-3">' + tr("Your message is ready. Send it with one click and I\'ll reply within 24 hours:") + '</p>' +
       '<div class="flex flex-wrap gap-2">' +
-        '<a class="' + BTN + '" target="_blank" rel="noreferrer" href="' + esc(mails.gmail) + '">' + ic("mail", "w-4 h-4") + "Send with Gmail</a>" +
-        '<a class="' + BTN + '" target="_blank" rel="noreferrer" href="' + esc(mails.outlook) + '">' + ic("mail", "w-4 h-4") + "Send with Outlook</a>" +
-        '<button type="button" data-copy-message class="' + BTN + '">' + ic("check", "w-4 h-4") + "Copy message</button>" +
+        '<a class="' + BTN + '" target="_blank" rel="noreferrer" href="' + esc(mails.gmail) + '">' + ic("mail", "w-4 h-4") + tr("Send with Gmail") + "</a>" +
+        '<a class="' + BTN + '" target="_blank" rel="noreferrer" href="' + esc(mails.outlook) + '">' + ic("mail", "w-4 h-4") + tr("Send with Outlook") + "</a>" +
+        '<button type="button" data-copy-message class="' + BTN + '">' + ic("check", "w-4 h-4") + tr("Copy message") + "</button>" +
       "</div>";
     status.hidden = false;
   }
 
   function openLightbox(i) {
-    var c = state.data.certificates[i];
+    var c = (state.view || state.data).certificates[i];
     if (!c || !imgSrc(c.image)) return;
     $("#lbImg").src = imgSrc(c.image);
     $("#lbImg").alt = c.title || "";
@@ -766,8 +877,10 @@
     var t = e.target;
     if (!t.closest) return;
     if ($("#admin") && $("#admin").contains(t)) return;
+    var lg = t.closest("[data-lang]");
+    if (lg) { setLang(lg.getAttribute("data-lang")); return; }
     if (t.closest("[data-email-copy]")) { copyEmail(); return; }
-    if (t.closest("[data-copy-message]")) { copyText(lastMessage, "Message copied. Paste it into an email to " + emailLinks().to); return; }
+    if (t.closest("[data-copy-message]")) { copyText(lastMessage, tr("Message copied. Paste it into an email to {to}", { to: emailLinks().to })); return; }
     if (t.closest("#emailMenu a")) { setTimeout(closeEmailMenu, 0); return; }
     if (t.closest("#emailMenu")) return;
     var emb = t.closest("[data-email-menu]");
@@ -845,22 +958,22 @@
 
   function servicePreviewHTML(p) {
     var media = mediaFor(p);
-    var inner = !media ? '<div class="w-full h-full flex items-center justify-center text-white/40 text-sm font-semibold">No preview yet</div>'
+    var inner = !media ? '<div class="w-full h-full flex items-center justify-center text-white/40 text-sm font-semibold">' + tr("No preview yet") + '</div>'
       : media.kind === "video" ? '<video src="' + esc(media.src) + '" controls autoplay playsinline class="w-full h-full object-cover"></video>'
       : media.kind === "iframe" ? '<iframe src="' + esc(media.src) + '" title="' + esc(p.title) + '" class="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
       : '<img src="' + esc(media.src) + '" alt="' + esc(p.title) + '" class="w-full h-full object-cover">';
     return '<div id="svcPreview" class="svc-pop mb-10 rounded-[2rem] border border-line bg-brand-dark text-white p-4 md:p-5 shadow-2xl">' +
       '<div class="flex items-start justify-between gap-4 mb-4"><div>' +
-        '<p class="text-[10px] uppercase tracking-[0.25em] text-white/40 font-black mb-2">Video preview</p>' +
+        '<p class="text-[10px] uppercase tracking-[0.25em] text-white/40 font-black mb-2">' + tr("Video preview") + '</p>' +
         '<h4 class="text-2xl font-black tracking-tight">' + esc(p.title) + "</h4></div>" +
-        '<button type="button" data-svc-preview-close class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-black uppercase tracking-widest text-white/80 hover:bg-white/10 transition-colors">Close</button>' +
+        '<button type="button" data-svc-preview-close class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-black uppercase tracking-widest text-white/80 hover:bg-white/10 transition-colors">' + tr("Close") + '</button>' +
       "</div>" +
       '<div class="overflow-hidden rounded-[1.5rem] bg-black aspect-video">' + inner + "</div>" +
       "</div>";
   }
 
   function serviceBodyHTML() {
-    var d = state.data;
+    var d = state.view || state.data;
     var s = d.services.filter(function (x) { return x.id === svc.id; })[0];
     if (!s) return "";
     var list = serviceProjects(d, s.id);
@@ -874,31 +987,31 @@
       return '<div class="group bg-muted rounded-[2rem] overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all duration-300 border border-line">' +
         '<div class="aspect-[16/10] overflow-hidden relative">' + img +
           ((link || gh) ? '<div class="absolute inset-0 bg-[#171717]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">' +
-            (link ? '<a href="' + esc(link) + '" target="_blank" rel="noreferrer" aria-label="Open ' + esc(p.title) + '" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#171717] hover:scale-110 transition-transform shadow-xl">' + ic("external-link", "w-5 h-5") + "</a>" : "") +
-            (gh ? '<a href="' + esc(gh) + '" target="_blank" rel="noreferrer" aria-label="' + esc(p.title) + ' on GitHub" class="w-12 h-12 bg-[#171717] rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform shadow-xl">' + ic("github", "w-5 h-5") + "</a>" : "") +
+            (link ? '<a href="' + esc(link) + '" target="_blank" rel="noreferrer" aria-label="' + tr("Open {name}", { name: esc(p.title) }) + '" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#171717] hover:scale-110 transition-transform shadow-xl">' + ic("external-link", "w-5 h-5") + "</a>" : "") +
+            (gh ? '<a href="' + esc(gh) + '" target="_blank" rel="noreferrer" aria-label="' + tr("{name} on GitHub", { name: esc(p.title) }) + '" class="w-12 h-12 bg-[#171717] rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform shadow-xl">' + ic("github", "w-5 h-5") + "</a>" : "") +
           "</div>" : "") +
         "</div>" +
         '<div class="p-8 flex flex-col flex-grow">' +
           (tags.length ? '<div class="flex flex-wrap gap-2 mb-4">' + tags.map(function (t) { return '<span class="text-[10px] font-black uppercase tracking-wider bg-surface px-3 py-1 rounded-full text-ink/40 border border-line shadow-sm">' + esc(t) + "</span>"; }).join("") + "</div>" : "") +
           '<h4 class="text-2xl font-black text-ink mb-2 tracking-tight">' + esc(p.title) + "</h4>" +
           '<p class="text-ink/50 text-sm leading-relaxed font-medium line-clamp-2">' + esc(p.description) + "</p>" +
-          '<button type="button" data-svc-view="' + i + '" class="mt-auto pt-6 flex items-center gap-2 text-ink font-black text-sm group/btn w-fit">View ' + ic("arrow-up-right", "w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform") + "</button>" +
+          '<button type="button" data-svc-view="' + i + '" class="mt-auto pt-6 flex items-center gap-2 text-ink font-black text-sm group/btn w-fit">' + tr("View") + ' ' + ic("arrow-up-right", "w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform") + "</button>" +
         "</div>" +
         "</div>";
     }).join("");
     return '<div class="mb-12"><div class="flex flex-col gap-4">' +
-        '<div class="bg-brand-purple/20 text-ink px-4 py-1.5 rounded-full w-fit text-xs font-black uppercase tracking-widest border border-brand-purple/30">Our Work</div>' +
-        '<h2 id="svcTitle" class="text-4xl md:text-5xl font-black text-ink tracking-tighter">' + esc(s.title) + ' <span class="text-brand-purple italic font-light">Projects</span></h2>' +
+        '<div class="bg-brand-purple/20 text-ink px-4 py-1.5 rounded-full w-fit text-xs font-black uppercase tracking-widest border border-brand-purple/30">' + tr("Our Work") + '</div>' +
+        '<h2 id="svcTitle" class="text-4xl md:text-5xl font-black text-ink tracking-tighter">' + (LANG === "fr" ? '<span class="text-brand-purple italic font-light">Projets ·</span> ' + esc(s.title) : esc(s.title) + ' <span class="text-brand-purple italic font-light">Projects</span>') + '</h2>' +
         (s.description ? '<p class="text-ink/60 text-lg max-w-2xl font-medium leading-relaxed">' + esc(s.description) + "</p>" : "") +
       "</div></div>" +
       (prev ? servicePreviewHTML(prev) : "") +
       (list.length ? '<div class="grid grid-cols-1 md:grid-cols-2 gap-8">' + cards + "</div>"
-        : '<div class="rounded-[2rem] border-2 border-dashed border-ink/15 p-10 text-center text-ink/50 font-semibold">Projects for this service are coming soon.' +
+        : '<div class="rounded-[2rem] border-2 border-dashed border-ink/15 p-10 text-center text-ink/50 font-semibold">' + tr("Projects for this service are coming soon.") +
           (state.owner ? '<br><span class="text-xs opacity-70">Link projects to this service from the admin\'s Projects tab.</span>' : "") + "</div>") +
       '<div class="mt-16 pt-12 border-t border-line flex flex-col md:flex-row items-center justify-between gap-8">' +
-        '<div class="text-center md:text-left"><p class="text-ink/30 uppercase font-black tracking-[0.2em] text-[10px] mb-2">Want to see more?</p>' +
-        '<h5 class="text-2xl font-black text-ink">Let\'s build something <span class="text-brand-orange">together</span>.</h5></div>' +
-        '<button type="button" data-svc-start class="bg-brand-dark text-white px-8 py-4 rounded-full font-black text-sm flex items-center gap-2 hover:bg-brand-dark/90 transition-all hover:scale-105 shadow-xl">Start a Project ' + ic("arrow-up-right", "w-4 h-4 text-brand-purple") + "</button>" +
+        '<div class="text-center md:text-left"><p class="text-ink/30 uppercase font-black tracking-[0.2em] text-[10px] mb-2">' + tr("Want to see more?") + '</p>' +
+        '<h5 class="text-2xl font-black text-ink">' + tr("Let\'s build something <span class=\"text-brand-orange\">together</span>.") + '</h5></div>' +
+        '<button type="button" data-svc-start class="bg-brand-dark text-white px-8 py-4 rounded-full font-black text-sm flex items-center gap-2 hover:bg-brand-dark/90 transition-all hover:scale-105 shadow-xl">' + tr("Start a Project") + ' ' + ic("arrow-up-right", "w-4 h-4 text-brand-purple") + "</button>" +
       "</div>";
   }
 
@@ -911,7 +1024,7 @@
     host.innerHTML = '<div class="fixed inset-0 z-[90]">' +
       '<div data-svc-close class="svc-overlay absolute inset-0 bg-black/80" aria-hidden="true"></div>' +
       '<div id="svcPanel" role="dialog" aria-modal="true" aria-labelledby="svcTitle" class="svc-panel absolute left-1/2 top-1/2 w-[calc(100%-2rem)] max-w-4xl max-h-[90vh] overflow-y-auto bg-surface rounded-[2.5rem] shadow-2xl">' +
-        '<button type="button" data-svc-close class="absolute right-4 top-4 z-10 rounded-sm text-ink opacity-70 hover:opacity-100 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple" aria-label="Close">' + ic("x", "w-4 h-4") + "</button>" +
+        '<button type="button" data-svc-close class="absolute right-4 top-4 z-10 rounded-sm text-ink opacity-70 hover:opacity-100 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple" aria-label="' + tr("Close") + '">' + ic("x", "w-4 h-4") + "</button>" +
         '<div id="svcBody" class="p-8 md:p-12">' + serviceBodyHTML() + "</div>" +
       "</div></div>";
     document.body.style.overflow = "hidden";
@@ -950,6 +1063,7 @@
   });
 
   /* ---------- boot ---------- */
+  document.documentElement.lang = LANG;
   renderSite();
 })();
 </script>
