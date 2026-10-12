@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markov chains & PageRank | Math Lab</title>
+<meta name="description" content="Interactive PageRank of 3,425 airports, Ehrenfest urn simulation and spectral gap explorer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lab/assets/lab.css">
+</head>
+<body data-page="markov-pagerank">
+<header id="labHeader"></header>
+<main>
+  <section class="hero">
+    <div>
+      <span class="kicker" data-i18n="kicker">Probability · Linear algebra</span>
+      <h1 data-i18n-html="title">Markov chains &amp; <em>PageRank</em></h1>
+      <p class="lead" data-i18n="lead">A random passenger keeps taking a random flight. Where do they spend their time? That is PageRank: the stationary distribution of a Markov chain on 3,425 airports.</p>
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" data-repo="markov-pagerank" target="_blank" rel="noreferrer"><span data-i18n="code">Code on GitHub</span></a>
+      <a class="btn" href="https://github.com/yassinedache/markov-chains-pagerank/blob/main/report/rapport.pdf" target="_blank" rel="noreferrer"><span data-i18n="report">Report</span></a>
+    </div>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" data-tab="pagerank" data-i18n="tab1">PageRank of airports</button>
+    <button type="button" role="tab" data-tab="ehrenfest" data-i18n="tab2">Ehrenfest urn</button>
+    <button type="button" role="tab" data-tab="gap" data-i18n="tab3">Spectral gap</button>
+  </div>
+
+  <!-- ===================== PageRank ===================== -->
+  <section class="tab-panel" data-panel="pagerank">
+    <div class="card bar">
+      <div class="control">
+        <label for="alpha"><span data-i18n="alpha">Damping factor α</span><output id="alphaOut">0.85</output></label>
+        <input type="range" id="alpha" min="0.05" max="0.99" step="0.01" value="0.85">
+      </div>
+      <div class="control">
+        <span class="label" data-i18n="teleport">Restart from</span>
+        <div class="seg" id="mode"><button type="button" data-v="uniform" aria-pressed="true" data-i18n="anyAirport">any airport</button><button type="button" data-v="personal" aria-pressed="false" data-i18n="oneAirport">the selected airport</button></div>
+      </div>
+      <div class="control">
+        <label for="search"><span data-i18n="find">Find an airport</span></label>
+        <input type="search" id="search" list="airportList" autocomplete="off" data-i18n-ph="findPh" placeholder="ALG, Algiers, Paris…">
+        <datalist id="airportList"></datalist>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="k" data-i18n="iters">Iterations</div><div class="v" id="sIters">–</div></div>
+        <div class="stat"><div class="k" data-i18n="bound">Error ≤</div><div class="v" id="sBound">–</div></div>
+        <div class="stat"><div class="k" data-i18n="time">Time</div><div class="v" id="sTime">–</div></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="card">
+      <h2 data-i18n="mapTitle">Where a random passenger spends their time</h2>
+      <p class="sub" data-i18n="mapSub">Each dot is an airport; size and colour show its PageRank. Hover to inspect, click to select.</p>
+      <div class="canvas-wrap" id="mapWrap"><canvas id="map" aria-label="World map of airport PageRank"></canvas><div class="tip" id="mapTip" hidden></div></div>
+      <div class="loading" id="prLoading" data-i18n="loading">Loading data…</div>
+      <div class="spacer"></div>
+      <div class="note" id="selInfo" hidden></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="topTitle">Top 15 airports</h2>
+        <p class="sub" data-i18n="topSub">Rank change compared with α = 0.85 and uniform restarts.</p>
+        <div class="table-wrap"><table class="data" id="topTable"></table></div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="convTitle">Convergence of the power method</h2>
+        <p class="sub" data-i18n-html="convSub">Residual ‖x<sub>k+1</sub> − x<sub>k</sub>‖₁ at each iteration, with the proven rate α<sup>k</sup>.</p>
+        <div class="chart-box"><canvas id="convChart"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="note" data-i18n-html="prNote"></div>
+  </section>
+
+  <!-- ===================== Ehrenfest ===================== -->
+  <section class="tab-panel" data-panel="ehrenfest" hidden>
+    <div class="grid side">
+      <div class="card controls">
+        <div class="control">
+          <label for="eN"><span data-i18n="balls">Number of balls N</span><output id="eNOut">20</output></label>
+          <input type="range" id="eN" min="4" max="60" step="1" value="20">
+        </div>
+        <div class="control">
+          <label for="eSpeed"><span data-i18n="speed">Speed (steps per second)</span><output id="eSpeedOut">20</output></label>
+          <input type="range" id="eSpeed" min="0" max="100" step="1" value="30">
+        </div>
+        <label class="check"><input type="checkbox" id="eLazy"> <span data-i18n="lazy">Lazy chain (stay put with probability 1/2)</span></label>
+        <div class="row">
+          <button type="button" class="btn orange" id="ePlay" data-i18n="pause">Pause</button>
+          <button type="button" class="btn" id="eJump" data-i18n="jump">+ 100,000 steps</button>
+          <button type="button" class="btn" id="eReset" data-i18n="reset">Reset</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="k" data-i18n="steps">Steps</div><div class="v" id="eSteps">0</div></div>
+          <div class="stat"><div class="k" data-i18n="stateK">Balls in A</div><div class="v" id="eK">0</div></div>
+          <div class="stat"><div class="k" data-i18n="tvFreq">TV distance</div><div class="v" id="eTV">–</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="urnTitle">Two urns, one ball moves at each step</h2>
+        <p class="sub" data-i18n="urnSub">A ball chosen at random changes urn. All balls start in urn B.</p>
+        <div class="canvas-wrap"><canvas id="urns" aria-label="Ehrenfest urns"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="freqTitle">Time spent in each state vs Binomial(N, 1/2)</h2>
+        <p class="sub" data-i18n="freqSub">Ergodic theorem: the fraction of time spent with k balls in A tends to the stationary probability π(k).</p>
+        <div class="chart-box"><canvas id="freqChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="tvTitle">Distance to π: the error falls like 1/√n</h2>
+        <p class="sub" data-i18n="tvSub">Total variation distance between the occupation frequencies and π, along the simulation.</p>
+        <div class="chart-box"><canvas id="tvChart"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="note" data-i18n-html="eNote"></div>
+  </section>
+
+  <!-- ===================== Spectral gap ===================== -->
+  <section class="tab-panel" data-panel="gap" hidden>
+    <div class="grid side">
+      <div class="card controls">
+        <div class="control">
+          <span class="label" data-i18n="chain">Chain</span>
+          <div class="seg" id="gChain"><button type="button" data-v="cycle" aria-pressed="true" data-i18n="cycle">Lazy cycle</button><button type="button" data-v="lazyE" aria-pressed="false" data-i18n="lazyE">Lazy Ehrenfest</button><button type="button" data-v="plainE" aria-pressed="false" data-i18n="plainE">Ehrenfest</button></div>
+        </div>
+        <div class="control">
+          <label for="gSize"><span id="gSizeLabel" data-i18n="sizeM">Number of sites m</span><output id="gSizeOut">20</output></label>
+          <input type="range" id="gSize" min="4" max="80" step="1" value="20">
+        </div>
+        <div class="control">
+          <label for="gStep"><span data-i18n="showN">Show the distribution at step n</span><output id="gStepOut">10</output></label>
+          <input type="range" id="gStep" min="0" max="400" step="1" value="10">
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="k">λ<sub>*</sub> <span data-i18n="theory">theory</span></div><div class="v" id="gLam">–</div></div>
+          <div class="stat"><div class="k" data-i18n="measured">Measured rate</div><div class="v" id="gRate">–</div></div>
+          <div class="stat"><div class="k">t<sub>mix</sub>(1/4)</div><div class="v" id="gMix">–</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="gapTitle">Distance to equilibrium ‖μₙ − π‖ (total variation)</h2>
+        <p class="sub" data-i18n="gapSub">Solid: exact computation of μₙ = μ₀Pⁿ. Dashed: the spectral bound ½·√((1 − π(x))/π(x))·λ*ⁿ.</p>
+        <div class="chart-box"><canvas id="gapChart"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="distTitle">Distribution μₙ and stationary distribution π</h2>
+        <div class="chart-box short"><canvas id="distChart"></canvas></div>
+      </div>
+      <div class="note" data-i18n-html="gNote"></div>
+    </div>
+  </section>
+</main>
+<footer id="labFoot"></footer>
+<script src="/lab/assets/vendor/chart.umd.min.js"></script>
+<script src="/lab/assets/lab.js"></script>
+<script src="/lab/markov-pagerank/app.js"></script>
+</body>
+</html>

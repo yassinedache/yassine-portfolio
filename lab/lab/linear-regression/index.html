@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linear regression | Math Lab</title>
+<meta name="description" content="Interactive least squares, gradient descent on the loss surface, and California Housing solved three ways.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lab/assets/lab.css">
+</head>
+<body data-page="linear-regression">
+<header id="labHeader"></header>
+<main>
+  <section class="hero">
+    <div>
+      <span class="kicker" data-i18n="kicker">Statistics · Optimization</span>
+      <h1 data-i18n-html="title">Linear regression <em>from scratch</em></h1>
+      <p class="lead" data-i18n="lead">Least squares solved with Cholesky and Householder QR, and gradient descent whose speed is set by the condition number. Everything below is recomputed live in your browser.</p>
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" data-repo="linear-regression" target="_blank" rel="noreferrer"><span data-i18n="code">Code on GitHub</span></a>
+      <a class="btn" href="https://github.com/yassinedache/linear-regression-from-scratch/blob/main/report/rapport.pdf" target="_blank" rel="noreferrer"><span data-i18n="report">Report</span></a>
+    </div>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" data-tab="fit" data-i18n="tab1">Fit your own line</button>
+    <button type="button" role="tab" data-tab="gd" data-i18n="tab2">Gradient descent</button>
+    <button type="button" role="tab" data-tab="housing" data-i18n="tab3">California Housing</button>
+  </div>
+
+  <!-- ===================== fit ===================== -->
+  <section class="tab-panel" data-panel="fit">
+    <div class="grid side-r">
+      <div class="card">
+        <h2 data-i18n="fitTitle">Click to add a point, click a point to remove it</h2>
+        <p class="sub" data-i18n="fitSub">The orange line minimises the sum of the squared vertical distances (grey segments).</p>
+        <div class="canvas-wrap"><canvas id="plane" aria-label="Points and least-squares line"></canvas></div>
+      </div>
+      <div class="card controls">
+        <div class="row">
+          <button type="button" class="btn" id="fRandom" data-i18n="random">New random points</button>
+          <button type="button" class="btn" id="fOutlier" data-i18n="outlier">Add an outlier</button>
+          <button type="button" class="btn" id="fClear" data-i18n="clear">Clear</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="k" data-i18n="points">Points</div><div class="v" id="fN">–</div></div>
+          <div class="stat"><div class="k">R²</div><div class="v" id="fR2">–</div></div>
+        </div>
+        <div class="note" id="fEq"></div>
+        <div class="table-wrap"><table class="data" id="fMethods"></table></div>
+        <p class="sub" data-i18n="fitNote2">Both direct methods give the same line; QR never forms XᵀX, so it stays accurate when the data are badly conditioned.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== gradient descent ===================== -->
+  <section class="tab-panel" data-panel="gd" hidden>
+    <div class="grid side">
+      <div class="card controls">
+        <div class="control">
+          <label for="gEta"><span data-i18n="step">Step η (in units of 1/L)</span><output id="gEtaOut">1.80</output></label>
+          <input type="range" id="gEta" min="0.05" max="2.2" step="0.01" value="1.8">
+        </div>
+        <div class="row">
+          <button type="button" class="btn" id="gOpt" data-i18n="optimal">Optimal step 2/(L + μ)</button>
+        </div>
+        <label class="check"><input type="checkbox" id="gStd"> <span data-i18n="standardise">Standardise x</span></label>
+        <div class="stats">
+          <div class="stat"><div class="k">κ = L/μ</div><div class="v" id="gKappa">–</div></div>
+          <div class="stat"><div class="k" data-i18n="rhoTh">Rate ρ (theory)</div><div class="v" id="gRho">–</div></div>
+          <div class="stat"><div class="k" data-i18n="rhoObs">Rate (measured)</div><div class="v" id="gRhoObs">–</div></div>
+          <div class="stat"><div class="k" data-i18n="iters">Iterations to 10⁻¹⁰</div><div class="v" id="gIters">–</div></div>
+        </div>
+        <p class="sub" data-i18n="gdHint">Uses the points from the first tab. Try η just above 2/L, then tick “Standardise x”.</p>
+      </div>
+      <div class="card">
+        <h2 data-i18n="surfTitle">The loss surface f(w₀, w₁) and the path of gradient descent</h2>
+        <p class="sub" data-i18n="surfSub">Colour bands are level sets of f (log scale); the dots are the iterates w₀, w₁, w₂, … starting from (0, 0).</p>
+        <div class="canvas-wrap"><canvas id="surface" aria-label="Loss surface and gradient descent path"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="gapTitle">f(wₖ) − f* at each iteration</h2>
+        <div class="chart-box"><canvas id="gChart"></canvas></div>
+      </div>
+      <div class="note" data-i18n-html="gdNote"></div>
+    </div>
+  </section>
+
+  <!-- ===================== California ===================== -->
+  <section class="tab-panel" data-panel="housing" hidden>
+    <div class="loading" id="hLoading" data-i18n="loading">Loading data…</div>
+    <div id="hBody" hidden>
+      <div class="card">
+        <h2 data-i18n="hTitle">20,433 Californian block groups, 8 features, 80 % / 20 % split</h2>
+        <p class="sub" data-i18n="hSub">The three solvers run in your browser on the 16,346 training rows; the scores are measured on the 4,087 test rows.</p>
+        <div class="table-wrap"><table class="data" id="hTable"></table></div>
+      </div>
+      <div class="spacer"></div>
+      <div class="grid two">
+        <div class="card">
+          <h2 data-i18n="coefTitle">Coefficients on standardised features</h2>
+          <div class="chart-box"><canvas id="hCoef"></canvas></div>
+        </div>
+        <div class="card">
+          <h2 data-i18n="predTitle">Predicted vs true value (test set)</h2>
+          <div class="chart-box"><canvas id="hPred"></canvas></div>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <div class="grid side">
+        <div class="card controls">
+          <div class="control">
+            <label for="hEta"><span data-i18n="step">Step η (in units of 1/L)</span><output id="hEtaOut">1.00</output></label>
+            <input type="range" id="hEta" min="0.05" max="2.1" step="0.01" value="1">
+          </div>
+          <label class="check"><input type="checkbox" id="hStd" checked> <span data-i18n="standardiseF">Standardise the features</span></label>
+          <div class="stats">
+            <div class="stat"><div class="k">κ</div><div class="v" id="hKappa">–</div></div>
+            <div class="stat"><div class="k" data-i18n="rhoTh">Rate ρ (theory)</div><div class="v" id="hRho">–</div></div>
+            <div class="stat"><div class="k" data-i18n="rhoObs">Rate (measured)</div><div class="v" id="hRhoObs">–</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h2 data-i18n="hGdTitle">Gradient descent on California Housing (600 iterations)</h2>
+          <p class="sub" data-i18n="hGdSub">Relative gap (f(wₖ) − f*) / (f(w₀) − f*), with the theoretical bound ρ²ᵏ (dashed).</p>
+          <div class="chart-box"><canvas id="hGd"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer id="labFoot"></footer>
+<script src="/lab/assets/vendor/chart.umd.min.js"></script>
+<script src="/lab/assets/lab.js"></script>
+<script src="/lab/assets/linalg.js"></script>
+<script src="/lab/linear-regression/app.js"></script>
+</body>
+</html>

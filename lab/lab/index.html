@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Math Lab | Yassine Abderrezak Dache</title>
+<meta name="description" content="Interactive demos of my mathematics projects: numerical analysis, linear regression, PCA and SVD, Markov chains and PageRank.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lab/assets/lab.css">
+</head>
+<body data-page="">
+<header id="labHeader"></header>
+<main>
+  <section class="hero">
+    <div>
+      <span class="kicker" data-i18n="kicker">Applied mathematics · Live demos</span>
+      <h1 data-i18n-html="title">Math <em>Lab</em></h1>
+      <p class="lead" data-i18n="lead">Four of my mathematics projects, turned into interactive pages. Move a slider and the computation runs again in your browser: convergence orders, step sizes, low-rank approximations, PageRank of the world's airports.</p>
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" href="https://github.com/yassinedache" target="_blank" rel="noreferrer"><span data-i18n="allCode">All the code on GitHub</span></a>
+    </div>
+  </section>
+
+  <div class="hub-grid">
+    <a class="hub-card" href="/lab/numerical-analysis/">
+      <div class="hub-art"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="none"/><g stroke-width="5" fill="none" stroke-linecap="round"><path d="M40 40 C 70 60, 90 150, 110 175" stroke="#171717"/><path d="M40 42 C 80 70, 120 150, 150 175" stroke="#FE8A5D"/><path d="M40 44 C 120 80, 200 130, 290 160" stroke="#9B7BF7"/><path d="M40 46 C 120 70, 180 110, 250 140 S 280 150, 290 152" stroke="#9CA3AF" stroke-dasharray="2 9"/></g><g fill="#171717"><circle cx="40" cy="40" r="5"/></g><path d="M30 185 H 300 M30 185 V 25" stroke="#9CA3AF" stroke-width="2"/></svg></div>
+      <div class="hub-body"><h2 data-i18n="c1t">Numerical analysis</h2><p data-i18n="c1p">Newton, secant and bisection; quadrature rules; Euler vs Runge-Kutta; the Runge phenomenon; Monte Carlo. Watch the convergence orders appear.</p><span class="go" data-i18n="open">Open the demo →</span></div>
+    </a>
+    <a class="hub-card" href="/lab/linear-regression/">
+      <div class="hub-art"><svg viewBox="0 0 320 200" aria-hidden="true"><g fill="#9B7BF7" opacity=".85"><circle cx="50" cy="160" r="6"/><circle cx="80" cy="140" r="6"/><circle cx="105" cy="150" r="6"/><circle cx="130" cy="118" r="6"/><circle cx="160" cy="112" r="6"/><circle cx="185" cy="90" r="6"/><circle cx="215" cy="96" r="6"/><circle cx="240" cy="70" r="6"/><circle cx="270" cy="58" r="6"/></g><path d="M35 168 L 290 48" stroke="#FE8A5D" stroke-width="5" stroke-linecap="round"/><g stroke="#171717" stroke-width="2" opacity=".35"><path d="M105 150 V 133"/><path d="M160 112 V 122"/><path d="M215 96 V 96"/><path d="M80 140 V 145"/></g></svg></div>
+      <div class="hub-body"><h2 data-i18n="c2t">Linear regression</h2><p data-i18n="c2p">Fit a line to your own points, watch gradient descent converge or diverge on the loss surface, then solve California Housing three ways.</p><span class="go" data-i18n="open">Open the demo →</span></div>
+    </a>
+    <a class="hub-card" href="/lab/pca-svd/">
+      <div class="hub-art"><svg viewBox="0 0 320 200" aria-hidden="true"><g opacity=".9"><g fill="#FE8A5D"><circle cx="80" cy="70" r="5"/><circle cx="95" cy="62" r="5"/><circle cx="70" cy="85" r="5"/><circle cx="100" cy="80" r="5"/><circle cx="88" cy="95" r="5"/></g><g fill="#9B7BF7"><circle cx="230" cy="70" r="5"/><circle cx="245" cy="85" r="5"/><circle cx="220" cy="90" r="5"/><circle cx="255" cy="65" r="5"/><circle cx="238" cy="100" r="5"/></g><g fill="#171717"><circle cx="150" cy="150" r="5"/><circle cx="165" cy="160" r="5"/><circle cx="140" cy="165" r="5"/><circle cx="172" cy="142" r="5"/><circle cx="155" cy="175" r="5"/></g></g><path d="M40 170 L 285 40" stroke="#9CA3AF" stroke-width="3" stroke-dasharray="6 6"/><path d="M110 40 L 210 190" stroke="#9CA3AF" stroke-width="3" stroke-dasharray="6 6"/></svg></div>
+      <div class="hub-body"><h2 data-i18n="c3t">PCA & SVD</h2><p data-i18n="c3p">Explore the Wine dataset in its principal components, and compress an image (or your own photo) with a rank slider and the Eckart–Young error.</p><span class="go" data-i18n="open">Open the demo →</span></div>
+    </a>
+    <a class="hub-card" href="/lab/markov-pagerank/">
+      <div class="hub-art"><svg viewBox="0 0 320 200" aria-hidden="true"><g stroke="#9CA3AF" stroke-width="2.5" opacity=".7"><path d="M70 60 L160 100 L250 55 M160 100 L120 165 M160 100 L230 160 M70 60 L120 165 M250 55 L230 160"/></g><circle cx="160" cy="100" r="26" fill="#FE8A5D"/><circle cx="70" cy="60" r="14" fill="#9B7BF7"/><circle cx="250" cy="55" r="17" fill="#9B7BF7"/><circle cx="120" cy="165" r="11" fill="#171717"/><circle cx="230" cy="160" r="13" fill="#171717"/></svg></div>
+      <div class="hub-body"><h2 data-i18n="c4t">Markov chains & PageRank</h2><p data-i18n="c4p">Rank 3,425 airports with PageRank and change the damping factor live; simulate the Ehrenfest urn and see the ergodic theorem at work.</p><span class="go" data-i18n="open">Open the demo →</span></div>
+    </a>
+  </div>
+</main>
+<footer id="labFoot"></footer>
+<script src="/lab/assets/lab.js"></script>
+<script>
+LAB.register({
+  en: { pageTitle: "Home", kicker: "Applied mathematics · Live demos", title: "Math <em>Lab</em>",
+    lead: "Four of my mathematics projects, turned into interactive pages. Move a slider and the computation runs again in your browser: convergence orders, step sizes, low-rank approximations, PageRank of the world's airports.",
+    allCode: "All the code on GitHub", open: "Open the demo →",
+    c1t: "Numerical analysis", c1p: "Newton, secant and bisection; quadrature rules; Euler vs Runge–Kutta; the Runge phenomenon; Monte Carlo. Watch the convergence orders appear.",
+    c2t: "Linear regression", c2p: "Fit a line to your own points, watch gradient descent converge or diverge on the loss surface, then solve California Housing three ways.",
+    c3t: "PCA & SVD", c3p: "Explore the Wine dataset in its principal components, and compress an image (or your own photo) with a rank slider and the Eckart–Young error.",
+    c4t: "Markov chains & PageRank", c4p: "Rank 3,425 airports with PageRank and change the damping factor live; simulate the Ehrenfest urn and see the ergodic theorem at work." },
+  fr: { pageTitle: "Accueil", kicker: "Mathématiques appliquées · Démos en direct", title: "Math <em>Lab</em>",
+    lead: "Quatre de mes projets de mathématiques, transformés en pages interactives. Déplacez un curseur et le calcul est refait dans votre navigateur : ordres de convergence, choix du pas, approximations de rang faible, PageRank des aéroports du monde.",
+    allCode: "Tout le code sur GitHub", open: "Ouvrir la démo →",
+    c1t: "Analyse numérique", c1p: "Newton, sécante et dichotomie ; méthodes de quadrature ; Euler contre Runge–Kutta ; le phénomène de Runge ; Monte-Carlo. Les ordres de convergence apparaissent sous vos yeux.",
+    c2t: "Régression linéaire", c2p: "Ajustez une droite à vos propres points, regardez la descente de gradient converger ou diverger sur la surface de perte, puis résolvez California Housing de trois façons.",
+    c3t: "ACP & SVD", c3p: "Explorez le jeu de données Wine dans ses composantes principales, et compressez une image (ou votre propre photo) avec un curseur de rang et l'erreur d'Eckart–Young.",
+    c4t: "Chaînes de Markov & PageRank", c4p: "Classez 3 425 aéroports avec PageRank en changeant le facteur d'amortissement en direct ; simulez l'urne d'Ehrenfest et voyez le théorème ergodique à l'œuvre." }
+});
+</script>
+</body>
+</html>

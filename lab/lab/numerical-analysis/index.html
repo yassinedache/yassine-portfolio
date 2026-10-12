@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numerical analysis | Math Lab</title>
+<meta name="description" content="Interactive numerical analysis: root finding, quadrature, ODE solvers, the Runge phenomenon and Monte Carlo, with live convergence orders.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lab/assets/lab.css">
+</head>
+<body data-page="numerical-analysis">
+<header id="labHeader"></header>
+<main>
+  <section class="hero">
+    <div>
+      <span class="kicker" data-i18n="kicker">Numerical analysis · Python</span>
+      <h1 data-i18n-html="title">Numerical analysis <em>lab</em></h1>
+      <p class="lead" data-i18n="lead">Classic numerical methods, each with its convergence order measured live and compared with the theory.</p>
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" data-repo="numerical-analysis" target="_blank" rel="noreferrer"><span data-i18n="code">Code on GitHub</span></a>
+    </div>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" data-tab="roots" data-i18n="tab1">Root finding</button>
+    <button type="button" role="tab" data-tab="quad" data-i18n="tab2">Integration</button>
+    <button type="button" role="tab" data-tab="ode" data-i18n="tab3">Differential equations</button>
+    <button type="button" role="tab" data-tab="interp" data-i18n="tab4">Interpolation</button>
+    <button type="button" role="tab" data-tab="mc" data-i18n="tab5">Monte Carlo</button>
+  </div>
+
+  <!-- ===================== roots ===================== -->
+  <section class="tab-panel" data-panel="roots">
+    <div class="card bar">
+      <div class="control">
+        <label for="rFun"><span data-i18n="equation">Equation f(x) = 0</span></label>
+        <select id="rFun"></select>
+      </div>
+      <div class="control">
+        <label for="rX0"><span data-i18n="start">Starting point x₀ (Newton, fixed point)</span><output id="rX0Out">1.00</output></label>
+        <input type="range" id="rX0" min="0" max="2" step="0.01" value="1">
+      </div>
+      <div class="note span2" id="rInfo" style="padding:10px 14px"></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="errTitle">Error |xₙ − r| at each iteration</h2>
+        <p class="sub" data-i18n="errSub">Straight lines on this log scale mean linear convergence; curves that plunge mean superlinear convergence.</p>
+        <div class="chart-box"><canvas id="rChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="newtonTitle">Newton's method follows the tangents</h2>
+        <p class="sub" data-i18n="newtonSub">xₙ₊₁ is where the tangent at xₙ crosses the axis. Move x₀ to see where it fails.</p>
+        <div class="chart-box"><canvas id="rPlot"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card"><div class="table-wrap"><table class="data" id="rTable"></table></div></div>
+      <div class="note" data-i18n-html="rNote"></div>
+    </div>
+  </section>
+
+  <!-- ===================== quadrature ===================== -->
+  <section class="tab-panel" data-panel="quad" hidden>
+    <div class="card bar">
+      <div class="control">
+        <label for="qFun"><span data-i18n="integral">Integral</span></label>
+        <select id="qFun"></select>
+      </div>
+      <div class="control">
+        <span class="label" data-i18n="rule">Rule shown</span>
+        <div class="seg" id="qRule"><button type="button" data-v="mid" aria-pressed="false" data-i18n="mid">Midpoint</button><button type="button" data-v="trap" aria-pressed="true" data-i18n="trap">Trapezoid</button><button type="button" data-v="simp" aria-pressed="false">Simpson</button></div>
+      </div>
+      <div class="control">
+        <label for="qN"><span data-i18n="subint">Sub-intervals n</span><output id="qNOut">4</output></label>
+        <input type="range" id="qN" min="2" max="32" step="2" value="4">
+      </div>
+      <div class="stats s2">
+        <div class="stat"><div class="k" data-i18n="estimate">Estimate</div><div class="v" id="qEst">–</div></div>
+        <div class="stat"><div class="k" data-i18n="error">Error</div><div class="v" id="qErr">–</div></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="areaTitle">The area the rule actually computes</h2>
+        <div class="chart-box"><canvas id="qPlot"></canvas></div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="qErrTitle">Error against the number of sub-intervals</h2>
+        <p class="sub" data-i18n="qErrSub">The slope on this log-log plot is the order of the rule.</p>
+        <div class="chart-box"><canvas id="qChart"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="note" data-i18n-html="qNote"></div>
+  </section>
+
+  <!-- ===================== ODE ===================== -->
+  <section class="tab-panel" data-panel="ode" hidden>
+    <div class="card bar">
+      <div class="control">
+        <label for="oH"><span data-i18n="stepH">Step h</span><output id="oHOut">0.05</output></label>
+        <input type="range" id="oH" min="0.01" max="0.4" step="0.01" value="0.05">
+      </div>
+      <div class="control">
+        <label for="oT"><span data-i18n="horizon">Final time T</span><output id="oTOut">60</output></label>
+        <input type="range" id="oT" min="10" max="200" step="10" value="60">
+      </div>
+      <div class="control">
+        <span class="label" data-i18n="methods">Methods</span>
+        <div class="row"><label class="check"><input type="checkbox" id="oEuler" checked> Euler</label><label class="check"><input type="checkbox" id="oHeun"> Heun</label><label class="check"><input type="checkbox" id="oRK4" checked> RK4</label></div>
+      </div>
+      <div class="stats s2">
+        <div class="stat"><div class="k" data-i18n="driftE">Drift, Euler</div><div class="v" id="oDE">–</div></div>
+        <div class="stat"><div class="k" data-i18n="driftR">Drift, RK4</div><div class="v" id="oDR">–</div></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="phaseTitle">Predators and prey (Lotka–Volterra)</h2>
+        <p class="sub" data-i18n="phaseSub">The exact orbit is closed. Euler spirals outwards; RK4 stays on the cycle.</p>
+        <div class="chart-box tall"><canvas id="oPhase"></canvas></div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="driftTitle">Drift of the conserved quantity V(x, y)</h2>
+        <p class="sub" data-i18n="driftSub">V = δx − γ ln x + βy − α ln y is constant along the true solution.</p>
+        <div class="chart-box tall"><canvas id="oDrift"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="ordTitle">Measured orders on y′ = −2ty, y(0) = 1</h2>
+        <p class="sub" data-i18n="ordSub">Error at t = 2 against the exact solution e^(−t²), halving h each time.</p>
+        <div class="table-wrap"><table class="data" id="oTable"></table></div>
+      </div>
+      <div class="note" data-i18n-html="oNote"></div>
+    </div>
+  </section>
+
+  <!-- ===================== interpolation ===================== -->
+  <section class="tab-panel" data-panel="interp" hidden>
+    <div class="card bar">
+      <div class="control">
+        <label for="iFun"><span data-i18n="function">Function</span></label>
+        <select id="iFun"></select>
+      </div>
+      <div class="control">
+        <label for="iDeg"><span data-i18n="degree">Polynomial degree n</span><output id="iDegOut">10</output></label>
+        <input type="range" id="iDeg" min="2" max="40" step="1" value="10">
+      </div>
+      <div class="stats s2 span2">
+        <div class="stat"><div class="k" data-i18n="errEq">Max error, equally spaced</div><div class="v" id="iEq">–</div></div>
+        <div class="stat"><div class="k" data-i18n="errCh">Max error, Chebyshev</div><div class="v" id="iCh">–</div></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="interpTitle">Interpolating polynomials of degree n</h2>
+        <div class="chart-box tall"><canvas id="iPlot"></canvas></div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="interpErrTitle">Maximum error on [−1, 1] against the degree</h2>
+        <div class="chart-box tall"><canvas id="iChart"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="note" data-i18n-html="iNote"></div>
+  </section>
+
+  <!-- ===================== Monte Carlo ===================== -->
+  <section class="tab-panel" data-panel="mc" hidden>
+    <div class="grid side">
+      <div class="card controls">
+        <div class="control">
+          <label for="mSpeed"><span data-i18n="speedPts">Points per second</span><output id="mSpeedOut">560</output></label>
+          <input type="range" id="mSpeed" min="0" max="100" step="1" value="55">
+        </div>
+        <div class="row">
+          <button type="button" class="btn orange" id="mPlay" data-i18n="pause">Pause</button>
+          <button type="button" class="btn" id="mJump" data-i18n="jumpPts">+ 1,000,000 points</button>
+          <button type="button" class="btn" id="mReset" data-i18n="reset">Reset</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="k" data-i18n="ptsN">Points N</div><div class="v" id="mN">0</div></div>
+          <div class="stat"><div class="k" data-i18n="piEst">Estimate of π</div><div class="v" id="mPi">–</div></div>
+          <div class="stat"><div class="k" data-i18n="error">Error</div><div class="v" id="mErr">–</div></div>
+          <div class="stat"><div class="k" data-i18n="ci">95 % interval ±</div><div class="v" id="mCI">–</div></div>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h2 data-i18n="dartsTitle">Random points in the unit square</h2>
+          <p class="sub" data-i18n="dartsSub">The fraction inside the quarter disc tends to π/4.</p>
+          <div class="canvas-wrap"><canvas id="mDarts" aria-label="Random points"></canvas></div>
+        </div>
+        <div class="card">
+          <h2 data-i18n="mcErrTitle">Error against N</h2>
+          <p class="sub" data-i18n="mcErrSub">The 95 % interval shrinks exactly like 1/√N.</p>
+          <div class="chart-box"><canvas id="mChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="note" data-i18n-html="mNote"></div>
+  </section>
+</main>
+<footer id="labFoot"></footer>
+<script src="/lab/assets/vendor/chart.umd.min.js"></script>
+<script src="/lab/assets/lab.js"></script>
+<script src="/lab/numerical-analysis/app.js"></script>
+</body>
+</html>

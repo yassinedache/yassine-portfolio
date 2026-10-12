@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PCA & SVD | Math Lab</title>
+<meta name="description" content="Image compression by low-rank SVD approximation and principal component analysis of the Wine dataset, live in the browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lab/assets/lab.css">
+<style>
+  .imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .imgs figure { margin: 0; }
+  .imgs canvas { width: 100%; height: auto; border-radius: 14px; background: var(--surface-2); image-rendering: auto; }
+  .imgs figcaption { font-size: 13px; font-weight: 700; color: var(--muted); margin-top: 6px; }
+  .quick { display: flex; flex-wrap: wrap; gap: 6px; }
+  .quick button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 13px; cursor: pointer; }
+  .quick button:hover { border-color: var(--purple); }
+  .progress { height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--orange); transition: width .2s; }
+</style>
+</head>
+<body data-page="pca-svd">
+<header id="labHeader"></header>
+<main>
+  <section class="hero">
+    <div>
+      <span class="kicker" data-i18n="kicker">Linear algebra · Python</span>
+      <h1 data-i18n-html="title">PCA &amp; SVD <em>from scratch</em></h1>
+      <p class="lead" data-i18n="lead">The singular value decomposition, computed with Jacobi rotations, used to compress images and to find the principal components of a dataset.</p>
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" data-repo="pca-svd" target="_blank" rel="noreferrer"><span data-i18n="code">Code on GitHub</span></a>
+      <a class="btn" href="https://github.com/yassinedache/pca-svd-from-scratch/blob/main/report/rapport.pdf" target="_blank" rel="noreferrer"><span data-i18n="report">Report</span></a>
+    </div>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" data-tab="compress" data-i18n="tab1">Image compression</button>
+    <button type="button" role="tab" data-tab="wine" data-i18n="tab2">PCA of the Wine dataset</button>
+  </div>
+
+  <!-- ===================== compression ===================== -->
+  <section class="tab-panel" data-panel="compress">
+    <div class="grid side-r">
+      <div class="card">
+        <div class="imgs">
+          <figure><canvas id="orig" aria-label="Original image"></canvas><figcaption id="origCap" data-i18n="original">Original</figcaption></figure>
+          <figure><canvas id="approx" aria-label="Rank-k approximation"></canvas><figcaption id="approxCap">–</figcaption></figure>
+        </div>
+        <div class="loading" id="cLoading" data-i18n="loading">Loading data…</div>
+      </div>
+      <div class="card controls">
+        <div class="control">
+          <label for="rank"><span data-i18n="rank">Rank k</span><output id="rankOut">20</output></label>
+          <input type="range" id="rank" min="1" max="256" step="1" value="20">
+        </div>
+        <div class="quick" id="quick"><button type="button" data-k="1">k = 1</button><button type="button" data-k="5">5</button><button type="button" data-k="20">20</button><button type="button" data-k="50">50</button><button type="button" data-k="100">100</button><button type="button" data-k="200">200</button></div>
+        <div class="stats">
+          <div class="stat"><div class="k" data-i18n="storage">Numbers stored</div><div class="v" id="cStore">–</div></div>
+          <div class="stat"><div class="k">PSNR</div><div class="v" id="cPsnr">–</div></div>
+          <div class="stat"><div class="k" data-i18n="errMeasured">Error ‖A − Aₖ‖ / ‖A‖</div><div class="v" id="cErr">–</div></div>
+          <div class="stat"><div class="k" data-i18n="errEY">Eckart–Young prediction</div><div class="v" id="cEY">–</div></div>
+        </div>
+        <div class="control">
+          <span class="label" data-i18n="yourPhoto">Try your own photo</span>
+          <div class="row">
+            <label class="btn orange" for="file" style="cursor:pointer"><span data-i18n="choose">Choose an image</span></label>
+            <input type="file" id="file" accept="image/*" class="sr-only">
+            <button type="button" class="btn" id="backAstro" hidden data-i18n="backAstro">Back to the astronaut</button>
+          </div>
+          <p class="sub" data-i18n="photoNote">Resized to 256 pixels and converted to grey, then decomposed in your browser by the same Jacobi algorithm. Nothing is uploaded.</p>
+          <div class="progress" id="svdProg" hidden><i></i></div>
+          <p class="sub" id="svdMsg"></p>
+        </div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="svTitle">Singular values σᵢ</h2>
+        <p class="sub" data-i18n="svSub">The image is the sum of rank-one layers σᵢ uᵢ vᵢᵀ. Keeping the k largest gives the best rank-k approximation.</p>
+        <div class="chart-box"><canvas id="svChart"></canvas></div>
+      </div>
+      <div class="note" data-i18n-html="cNote"></div>
+    </div>
+  </section>
+
+  <!-- ===================== Wine PCA ===================== -->
+  <section class="tab-panel" data-panel="wine" hidden>
+    <div class="card bar">
+      <div class="control">
+        <span class="label" data-i18n="axes">Axes</span>
+        <div class="row"><select id="px" aria-label="horizontal axis"></select><select id="py" aria-label="vertical axis"></select></div>
+      </div>
+      <div class="control">
+        <span class="label" data-i18n="route">Computed by</span>
+        <div class="seg" id="route"><button type="button" data-v="cov" aria-pressed="true" data-i18n="cov">Covariance + Jacobi</button><button type="button" data-v="svd" aria-pressed="false">SVD</button></div>
+      </div>
+      <label class="check"><input type="checkbox" id="wStd" checked> <span data-i18n="standardise">Standardise the 13 variables</span></label>
+      <div class="stats">
+        <div class="stat"><div class="k" data-i18n="varPlane">Variance in this plane</div><div class="v" id="wVar">–</div></div>
+        <div class="stat"><div class="k" data-i18n="acc">Cultivar found (LOO)</div><div class="v" id="wAcc">–</div></div>
+        <div class="stat"><div class="k" data-i18n="agree">Two routes agree to</div><div class="v" id="wAgree">–</div></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="scoresTitle">178 wines in the principal plane</h2>
+        <p class="sub" data-i18n="scoresSub">Colours show the cultivar, which PCA never sees.</p>
+        <div class="chart-box tall"><canvas id="scores"></canvas></div>
+      </div>
+      <div class="card">
+        <h2 data-i18n="circleTitle">Correlation circle</h2>
+        <p class="sub" data-i18n="circleSub">Each arrow is a variable; its coordinates are its correlations with the two components.</p>
+        <div class="canvas-wrap"><canvas id="circle" aria-label="Correlation circle"></canvas></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="grid two">
+      <div class="card">
+        <h2 data-i18n="evTitle">Explained variance</h2>
+        <div class="chart-box short"><canvas id="evChart"></canvas></div>
+      </div>
+      <div class="note" data-i18n-html="wNote"></div>
+    </div>
+  </section>
+</main>
+<footer id="labFoot"></footer>
+<script src="/lab/assets/vendor/chart.umd.min.js"></script>
+<script src="/lab/assets/lab.js"></script>
+<script src="/lab/assets/linalg.js"></script>
+<script src="/lab/pca-svd/app.js"></script>
+</body>
+</html>
